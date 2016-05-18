@@ -340,7 +340,7 @@
                         <a href="#"><img src="/yhWeb/Public/Home/Images/sh_5.gif"/></a>
                     </div>
                 </div>
-                <div class="d_care"><a onclick="ShowDiv('MyDiv','fade')">关注商品</a></div>
+                <div class="d_care"><a onclick="addCollection('MyDiv','fade',<?php echo ($goodsdetail["goods"]["id"]); ?>);">关注商品</a></div>
             </div>
             <div class="des_join">
                 <div class="j_nums">
@@ -379,82 +379,36 @@
         <div class="l_history">
             <div class="fav_t">用户还喜欢</div>
             <ul>
-                <li>
-                    <div class="img"><a href="#"><img src="/yhWeb/Public/Home/Images/his_1.jpg" width="185" height="162"/></a></div>
-                    <div class="name"><a href="#">Dior/迪奥香水2件套装</a></div>
+                <?php if(is_array($goodsLike)): $i = 0; $__LIST__ = $goodsLike;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$goodsLike): $mod = ($i % 2 );++$i;?><li>
+                    <div class="img"><a href="#"><img src="/yhWeb/Public/Uploads/<?php echo ($goodsLike["picName"]); ?>" width="185" height="162"/></a></div>
+                    <div class="name"><a href="#"><?php echo ($goodsLike["goodsName"]); ?></a></div>
                     <div class="price">
-                        <font>￥<span>368.00</span></font> &nbsp; 18R
+                        <font>￥<span><?php echo ($goodsLike["price"]); ?></span></font> &nbsp;
                     </div>
-                </li>
-                <li>
-                    <div class="img"><a href="#"><img src="/yhWeb/Public/Home/Images/his_2.jpg" width="185" height="162"/></a></div>
-                    <div class="name"><a href="#">Dior/迪奥香水2件套装</a></div>
-                    <div class="price">
-                        <font>￥<span>768.00</span></font> &nbsp; 18R
-                    </div>
-                </li>
-                <li>
-                    <div class="img"><a href="#"><img src="/yhWeb/Public/Home/Images/his_3.jpg" width="185" height="162"/></a></div>
-                    <div class="name"><a href="#">Dior/迪奥香水2件套装</a></div>
-                    <div class="price">
-                        <font>￥<span>680.00</span></font> &nbsp; 18R
-                    </div>
-                </li>
-                <li>
-                    <div class="img"><a href="#"><img src="/yhWeb/Public/Home/Images/his_4.jpg" width="185" height="162"/></a></div>
-                    <div class="name"><a href="#">Dior/迪奥香水2件套装</a></div>
-                    <div class="price">
-                        <font>￥<span>368.00</span></font> &nbsp; 18R
-                    </div>
-                </li>
-                <li>
-                    <div class="img"><a href="#"><img src="/yhWeb/Public/Home/Images/his_5.jpg" width="185" height="162"/></a></div>
-                    <div class="name"><a href="#">Dior/迪奥香水2件套装</a></div>
-                    <div class="price">
-                        <font>￥<span>368.00</span></font> &nbsp; 18R
-                    </div>
-                </li>
+                </li><?php endforeach; endif; else: echo "" ;endif; ?>
             </ul>
         </div>
         <div class="l_list">
             <div class="des_border">
-                <div class="des_tit">
-                    <ul>
-                        <li class="current">推荐搭配</li>
-                    </ul>
-                </div>
-                <div class="team_list">
-                    <div class="img"><a href="#"><img src="/yhWeb/Public/Home/Images/mat_1.jpg" width="160" height="140"/></a></div>
-                    <div class="name"><a href="#">倩碧补水组合套装8折促销</a></div>
-                    <div class="price">
-                        <div class="checkbox"><input type="checkbox" name="zuhe" checked="checked"/></div>
-                        <font>￥<span>768.00</span></font> &nbsp; 18R
-                    </div>
-                </div>
-                <div class="team_icon"><img src="/yhWeb/Public/Home/Images/jia_b.gif"/></div>
-                <div class="team_list">
-                    <div class="img"><a href="#"><img src="/yhWeb/Public/Home/Images/mat_2.jpg" width="160" height="140"/></a></div>
-                    <div class="name"><a href="#">香奈儿邂逅清新淡香水50ml</a></div>
-                    <div class="price">
-                        <div class="checkbox"><input type="checkbox" name="zuhe"/></div>
-                        <font>￥<span>749.00</span></font> &nbsp; 18R
-                    </div>
-                </div>
-                <div class="team_icon"><img src="/yhWeb/Public/Home/Images/jia_b.gif"/></div>
-                <div class="team_list">
-                    <div class="img"><a href="#"><img src="/yhWeb/Public/Home/Images/mat_3.jpg" width="160" height="140"/></a></div>
-                    <div class="name"><a href="#">香奈儿邂逅清新淡香水50ml</a></div>
-                    <div class="price">
-                        <div class="checkbox"><input type="checkbox" name="zuhe" checked="checked"/></div>
-                        <font>￥<span>749.00</span></font> &nbsp; 18R
-                    </div>
-                </div>
-                <div class="team_icon"><img src="/yhWeb/Public/Home/Images/equl.gif"/></div>
-                <div class="team_sum">
-                    套餐价：￥<span>1517</span><br/>
-                    <input type="text" value="1" class="sum_ipt"/><br/>
-                    <a href="#"><img src="/yhWeb/Public/Home/Images/z_buy.gif"/></a>
-                </div>
+                <!--<div class="des_tit">-->
+                    <!--<ul>-->
+                        <!--<li class="current">推荐搭配</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+                <!--<div class="team_list">-->
+                    <!--<div class="img"><a href="#"><img src="" width="160" height="140"/></a></div>-->
+                    <!--<div class="name"><a href="#"></a></div>-->
+                    <!--<div class="price">-->
+                        <!--<div class="checkbox"><input type="checkbox" name="zuhe" checked="checked"/></div>-->
+                        <!--<font>￥<span></span></font> &nbsp;-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="team_icon"><img src="/yhWeb/Public/Home/Images/jia_b.gif"/></div>-->
+                <!--<div class="team_sum">-->
+                    <!--套餐价：￥<span></span><br/>-->
+                    <!--<input type="text" value="1" class="sum_ipt"/><br/>-->
+                    <!--<a href="#"><img src="/yhWeb/Public/Home/Images/z_buy.gif"/></a>-->
+                <!--</div>-->
 
             </div>
             <div class="des_border">
@@ -469,32 +423,30 @@
 
                     <table border="0" align="center" style="width:100%; font-family:'宋体'; margin:10px auto;" cellspacing="0" cellpadding="0">
                         <?php if(is_array($goodsdetail["property"])): $i = 0; $__LIST__ = $goodsdetail["property"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$property): $mod = ($i % 2 );++$i;?><tr>
-                                <?php if(is_array($property)): $i = 0; $__LIST__ = $property;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$property): $mod = ($i % 2 );++$i;?><td><?php echo ($property["propertyName"]); ?>：<?php echo ($property["propertyValue"]); ?></td><?php endforeach; endif; else: echo "" ;endif; ?>
+                                <?php if(is_array($property)): $i = 0; $__LIST__ = $property;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$property): $mod = ($i % 2 );++$i;?><td><?php echo ($property["propertyName"]); ?>:<?php echo ($property["propertyValue"]); ?></td><?php endforeach; endif; else: echo "" ;endif; ?>
                             </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                     </table>
-
-
                 </div>
             </div>
 
             <div class="des_border" id="p_details">
                 <div class="des_t">商品详情</div>
                 <div class="des_con">
-                    <table border="0" align="center" style="width:745px; font-size:14px; font-family:'宋体';" cellspacing="0" cellpadding="0">
-                        <tr>
-                            <td width="265"><img src="/yhWeb/Public/Home/Images/de1.jpg" width="206" height="412"/></td>
-                            <td>
-                                <b>迪奥真我香水(Q版)</b><br/>
-                                【商品规格】：5ml<br/>
-                                【商品质地】：液体<br/>
-                                【商品日期】：与专柜同步更新<br/>
-                                【商品产地】：法国<br/>
-                                【商品包装】：无外盒 无塑封<br/>
-                                【商品香调】：花束花香调<br/>
-                                【适用人群】：适合女性（都市白领，性感，有女人味的成熟女性）<br/>
-                            </td>
-                        </tr>
-                    </table>
+                    <!--<table border="0" align="center" style="width:745px; font-size:14px; font-family:'宋体';" cellspacing="0" cellpadding="0">-->
+                        <!--<tr>-->
+                            <!--<td width="265"><img src="/yhWeb/Public/Home/Images/de1.jpg" width="206" height="412"/></td>-->
+                            <!--<td>-->
+                                <!--<b>迪奥真我香水(Q版)</b><br/>-->
+                                <!--【商品规格】：5ml<br/>-->
+                                <!--【商品质地】：液体<br/>-->
+                                <!--【商品日期】：与专柜同步更新<br/>-->
+                                <!--【商品产地】：法国<br/>-->
+                                <!--【商品包装】：无外盒 无塑封<br/>-->
+                                <!--【商品香调】：花束花香调<br/>-->
+                                <!--【适用人群】：适合女性（都市白领，性感，有女人味的成熟女性）<br/>-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                    <!--</table>-->
 
                     <p align="center">
                         <img src="/yhWeb/Public/Home/Images/de2.jpg" width="746" height="425"/><br/><br/>
@@ -616,7 +568,7 @@
                     </tr>
                     <tr height="50" valign="bottom">
                         <td>&nbsp;</td>
-                        <td><a href="#" class="b_sure">确定</a></td>
+                        <td><a href="javascript:CloseDiv('MyDiv','fade');" class="b_sure">确定</a></td>
                     </tr>
                 </table>
 
@@ -746,3 +698,27 @@
 <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
 <![endif]-->
 </html>
+<script>
+    function addCollection(show_div, bg_div,id)
+    {
+        $('.d_care').css('background','url(/yhWeb/Public/Home/Images/heart_h.png) no-repeat 10px center');
+//        $.post('/yhWeb/Home/Product/addCollection',{id:id},function (data){
+//            if(data.status)
+//            {
+//                document.getElementById(show_div).style.display = 'block';
+//                document.getElementById(bg_div).style.display = 'block';
+//                var bgdiv = document.getElementById(bg_div);
+//                bgdiv.style.width = document.body.scrollWidth;
+//                // bgdiv.style.height = $(document).height();
+//                $("#" + bg_div).height($(document).height());
+//            }
+//            else
+//            {
+//                var r = confirm('请先登陆');
+//                if (r) {
+//                    window.location = '/yhWeb/Home/User/Login'
+//                }
+//            }
+//        })
+    }
+</script>

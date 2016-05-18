@@ -39,6 +39,8 @@ class ProductController extends PublicController
             }
         }
         $goodsdetail = $goodsobj->getGoodsDetail($id);
+        $goodsLike=$goodsobj->field('id,goodsName,price,picName')->where("path='{$goodsdetail['goods']['path']}'")->order('sales desc')->limit(10)->select();
+        $this->assign('goodsLike',$goodsLike);
         $this->assign('typerows', $typerows);
         $this->assign('goodsdetail', $goodsdetail);
         $this->display('Product');

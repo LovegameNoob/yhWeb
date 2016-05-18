@@ -71,14 +71,25 @@ class CategoryListController extends PublicController
     public function addCollection($id)
     {
         $d = D('Goods');
-        if(!($d->table('collection')->where("goodsId=$id")->find()))
+        if(empty($_SESSION['userId']))
         {
-            $data=$d->field('goodsName,price,picName')->find($id);
-            $data['goodsId']=$id;
-            $data['userId']=$_SESSION['userId'];
-            $m=M('collection');
-            $m->add($data);
+            $data['status']=0;
         }
+        else
+        {
+            if(!($d->table('collection')->where("goodsId=$id")->find()))
+            {
+                $data=$d->field('goodsName,price,picName')->find($id);
+                $data['goodsId']=$id;
+                $data['userId']=$_SESSION['userId'];
+                $m=M('collection');
+                $m->add($data);
+            }
+
+            $data['status']=1;
+        }
+        $this->ajaxReturn($data);
+
     }
     public function addConllectClass($goods)
     {

@@ -342,11 +342,11 @@
         <?php if(is_array($Filtergoods)): $i = 0; $__LIST__ = $Filtergoods;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$goods): $mod = ($i % 2 );++$i;?><li>
                 <div class="img"><a href="/yhWeb/Home/Product/index/id/<?php echo ($goods["id"]); ?>"><img src="/yhWeb/Public/Uploads/<?php echo ($goods["picName"]); ?>" width="210" height="185"/></a></div>
                 <div class="price">
-                    <font>￥<span><?php echo ($goods["price"]); ?></span></font> &nbsp; 26R
+                    <font>￥<span><?php echo ($goods["price"]); ?></span></font> &nbsp;
                 </div>
                 <div class="name"><a href="/yhWeb/Home/Product/index/id/<?php echo ($goods["id"]); ?>"><?php echo ($goods["goodsName"]); ?></a></div>
                 <div class="carbg">
-                    <a href="javascript:addCollection(<?php echo ($goods["id"]); ?>);" class="ss <?php echo ($goods["class"]); ?>">收藏</a>
+                    <a href="javascript:addCollection('MyDiv','fade',<?php echo ($goods["id"]); ?>,this);" class="ss <?php echo ($goods["class"]); ?>">收藏</a>
                     <a onclick="ShowDiv_1('MyDiv1','fade1',<?php echo ($goods["id"]); ?>)" class="j_car">加入购物车</a>
                 </div>
             </li><?php endforeach; endif; else: echo "" ;endif; ?>
@@ -383,6 +383,33 @@
         </div>
         <!--End 弹出层-加入购物车 End-->
     </div>
+    <!--Begin 弹出层-收藏成功 Begin-->
+    <div id="fade" class="black_overlay"></div>
+    <div id="MyDiv" class="white_content">
+        <div class="white_d">
+            <div class="notice_t">
+                <span class="fr" style="margin-top:10px; cursor:pointer;" onclick="CloseDiv('MyDiv','fade')"><img src="/yhWeb/Public/Home/Images/close.gif"/></span>
+            </div>
+            <div class="notice_c">
+
+                <table border="0" align="center" style="margin-top:0;" cellspacing="0" cellpadding="0">
+                    <tr valign="top">
+                        <td width="40"><img src="/yhWeb/Public/Home/Images/suc.png"/></td>
+                        <td>
+                            <span style="color:#3e3e3e; font-size:18px; font-weight:bold;">您已成功收藏该商品</span><br/>
+                            <a href="#">查看我的关注 >></a>
+                        </td>
+                    </tr>
+                    <tr height="50" valign="bottom">
+                        <td>&nbsp;</td>
+                        <td><a href="javascript:CloseDiv('MyDiv','fade');" class="b_sure">确定</a></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <!--End 弹出层-收藏成功 End-->
 
     <!--Begin Footer Begin -->
     <div class="b_btm_bg bg_color">
@@ -478,9 +505,26 @@
            $('.l_history ul').remove()
         })
     }
-    function addCollection(id)
+    function addCollection(show_div, bg_div,id,ss)
     {
-        $.post('/yhWeb/Home/CategoryList/addCollection',{id:id},function (){
+        $.post('/yhWeb/Home/CategoryList/addCollection',{id:id},function (data){
+            if(data.status)
+            {
+                $(ss).css({'color':'#888888','background':'url(/yhWeb/Public/Home/Images/heart_h.png) no-repeat 10px center'});
+                document.getElementById(show_div).style.display = 'block';
+                document.getElementById(bg_div).style.display = 'block';
+                var bgdiv = document.getElementById(bg_div);
+                bgdiv.style.width = document.body.scrollWidth;
+                // bgdiv.style.height = $(document).height();
+                $("#" + bg_div).height($(document).height());
+            }
+            else
+            {
+                var r = confirm('请先登陆');
+                if (r) {
+                    window.location = '/yhWeb/Home/User/Login'
+                }
+            }
         })
     }
     $(function(){
@@ -512,9 +556,8 @@
             }
 
         })
-        $(".ss").click(function () {
-              $(this).css('color','#888888');
-            $(this).css('background','url(/yhWeb/Public/Home/Images/heart_h.png) no-repeat 10px center');
-        })
+//        $(".ss").click(function () {
+//            $(this).css({'color':'#888888','background':'url(/yhWeb/Public/Home/Images/heart_h.png) no-repeat 10px center'});
+//        })
     })
 </script>
