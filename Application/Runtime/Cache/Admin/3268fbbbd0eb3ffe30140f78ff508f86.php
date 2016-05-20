@@ -205,7 +205,7 @@
                 <span aria-hidden="true">&laquo;</span>
             </a>
         </li>
-        <?php $__FOR_START_21010__=1;$__FOR_END_21010__=$pagenum+1;for($i=$__FOR_START_21010__;$i < $__FOR_END_21010__;$i+=1){ ?><li class="page"><a href="#"><?php echo ($i); ?></a></li><?php } ?>
+        <?php $__FOR_START_12375__=1;$__FOR_END_12375__=$pagenum+1;for($i=$__FOR_START_12375__;$i < $__FOR_END_12375__;$i+=1){ ?><li class="page"><a href="#"><?php echo ($i); ?></a></li><?php } ?>
         </volist>
         <li>
             <a href="#" aria-label="Next" id="Next">
@@ -224,7 +224,7 @@
                 $(this).removeClass('active')
             })
             $(this).addClass('active')
-            $.post('/yhWeb/Admin/Goods/ajaxPage', {page: $(this).text(), state: $("#ajaxpage").attr('state')}, function (data) {
+            $.get('/yhWeb/Admin/Goods/ajaxPage', {page: $(this).text(), state: $("#ajaxpage").attr('state')}, function (data) {
                 $('#ajaxpage').html(data);
             })
         })
@@ -233,7 +233,7 @@
                 var index = $('.active').prev().index()
                 $('.active').removeClass('active')
                 $('.page').eq(index - 1).addClass('active')
-                $.post('/yhWeb/Admin/Goods/ajaxPage', {page: index, state: $("#ajaxpage").attr('state')}, function (data) {
+                $.get('/yhWeb/Admin/Goods/ajaxPage', {page: index, state: $("#ajaxpage").attr('state')}, function (data) {
                     $('#ajaxpage').html(data);
                 })
             }
@@ -243,7 +243,7 @@
                 var index = $('.active').next().index()
                 $('.active').removeClass('active')
                 $('.page').eq(index - 1).addClass('active')
-                $.post('/yhWeb/Admin/Goods/ajaxPage', {page: index, state: $("#ajaxpage").attr('state')}, function (data) {
+                $.get('/yhWeb/Admin/Goods/ajaxPage', {page: index, state: $("#ajaxpage").attr('state')}, function (data) {
                     $('#ajaxpage').html(data);
                 })
             }

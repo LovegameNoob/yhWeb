@@ -23,7 +23,7 @@
                             <input name="" type="button" value="查询" class="text-but">
                         </form>
                     </td>
-                    <td width="10%" align="center" valign="middle" style="text-align:right; width:150px;"><a href="" target="mainFrame" onFocus="this.blur()" class="add">新增图片</a></td>
+                    <td width="10%" align="center" valign="middle" style="text-align:right; width:150px;"><a href="addGoodsImage" target="mainFrame" onFocus="this.blur()" class="add">新增图片</a></td>
                 </tr>
             </table>
         </td>
@@ -46,17 +46,24 @@
                         <td align='center' valign='middle' class='borderright borderbottom'>{$images['id']}</td>
                         <td align='center' valign='middle' class='borderright borderbottom'>{$images['goodsId']}</td>
                         <td align='center' valign='middle' class='borderright borderbottom'>{$images['typeId']}</td>
-                        <td align='center' valign='middle' class='borderright borderbottom'><img src="__PUBLIC__/Uploads/{$images['picName']}" alt="" width="100" height="100"></td>
                         <td align='center' valign='middle' class='borderright borderbottom'>
-                            <eq name="images.picDetail|count" value="1">
-                                <img src="__PUBLIC__/Uploads/{$images.picDetail}" alt="" width="100" height="100">
-                                <else/>
+                            <notempty name="images.picName">
+                                <volist name="images.picName" id="picName">
+                            <img src="__PUBLIC__/Uploads/{$picName}" alt="" width="100" height="100">
+                                </volist>
+                            </notempty>
+                        </td>
+                        <td align='center' valign='middle' class='borderright borderbottom'>
+                            <notempty name="images.picDetail">
                                 <volist name="images.picDetail" id="detail">
                                     <img src="__PUBLIC__/Uploads/{$detail}" alt="" width="100" height="100">
                                 </volist>
-                            </eq>
+                            </notempty>
                         </td>
-                        <td align='center' valign='middle' class='borderright borderbottom'><img src="__PUBLIC__/Uploads/{$images['picPure']}" alt="" width="100" height="100"></td>
+                        <td align='center' valign='middle' class='borderright borderbottom'>
+                                <volist name="images.picPure" id="picPure"><img src="__PUBLIC__/Uploads/{$picPure}" alt="" width="100" height="100">
+                                </volist>
+                        </td>
                         <td align='center' valign='middle' class='borderright borderbottom'>
                             <empty name="images.picTurn"><else/><img src="__PUBLIC__/Uploads/{$images['picTurn']}" alt="" width="100" height="100"></empty></td>
                         <td align='center' valign='middle'>

@@ -289,17 +289,17 @@
     <div class="content">
         <div class="cate_nav">
             <?php if(is_array($type)): $i = 0; $__LIST__ = $type;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$type): $mod = ($i % 2 );++$i;?><dl>
-                    <dt><a href="#"><?php echo ($type[0]["name"]); ?></a></dt>
-                    <?php if(is_array($type[1])): $i = 0; $__LIST__ = $type[1];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$typethree): $mod = ($i % 2 );++$i;?><dd><a href="#"><?php echo ($typethree["name"]); ?></a></dd><?php endforeach; endif; else: echo "" ;endif; ?>
+                    <dt><a href="/yhWeb/Home/CategoryList/index/typeid/<?php echo ($type[0]["id"]); ?>"><?php echo ($type[0]["name"]); ?></a></dt>
+                    <?php if(is_array($type[1])): $i = 0; $__LIST__ = $type[1];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$typethree): $mod = ($i % 2 );++$i;?><dd><a href="/yhWeb/Home/CategoryList/index/typeid/<?php echo ($typethree["id"]); ?>"><?php echo ($typethree["name"]); ?></a></dd><?php endforeach; endif; else: echo "" ;endif; ?>
                 </dl><?php endforeach; endif; else: echo "" ;endif; ?>
         </div>
         <!--Begin Banner Begin-->
         <div class="nban">
             <div class="top_slide_wrap">
                 <ul class="slide_box bxslider">
-                    <li><img src="/yhWeb/Public/Home/Images/nban.jpg" width="977" height="401"/></li>
-                    <li><img src="/yhWeb/Public/Home/Images/nban.jpg" width="977" height="401"/></li>
-                    <li><img src="/yhWeb/Public/Home/Images/nban.jpg" width="977" height="401"/></li>
+                    <li><img src="/yhWeb/Public/Home/Images/<?php echo ($banner["banner1"]); ?>" width="977" height="401"/></li>
+                    <li><img src="/yhWeb/Public/Home/Images/<?php echo ($banner["banner2"]); ?>" width="977" height="401"/></li>
+                    <li><img src="/yhWeb/Public/Home/Images/<?php echo ($banner["banner3"]); ?>" width="977" height="401"/></li>
                 </ul>
                 <div class="op_btns clearfix">
                     <a href="#" class="op_btn op_prev"><span></span></a>
@@ -320,10 +320,10 @@
     </div>
     <div class="content mar_15">
         <ul class="cate">
-            <li><a href="../CategoryList/CategoryList.html"><img src="/yhWeb/Public/Home/Images/ca_1.jpg" width="295" height="220"/></a></li>
-            <li><a href="../CategoryList/CategoryList.html"><img src="/yhWeb/Public/Home/Images/ca_2.jpg" width="295" height="220"/></a></li>
-            <li><a href="../CategoryList/CategoryList.html"><img src="/yhWeb/Public/Home/Images/ca_3.jpg" width="295" height="220"/></a></li>
-            <li><a href="../CategoryList/CategoryList.html"><img src="/yhWeb/Public/Home/Images/ca_4.jpg" width="295" height="220"/></a></li>
+            <?php if(!empty($poster)): ?><li><a href="../CategoryList/CategoryList.html"><img src="/yhWeb/Public/Home/Images/<?php echo ($poster['poster1']); ?>" width="229" /></a></li>
+            <li><a href="../CategoryList/CategoryList.html"><img src="/yhWeb/Public/Home/Images/<?php echo ($poster['poster2']); ?>" width="229" /></a></li>
+            <li><a href="../CategoryList/CategoryList.html"><img src="/yhWeb/Public/Home/Images/<?php echo ($poster['poster3']); ?>" width="229" /></a></li>
+            <li><a href="../CategoryList/CategoryList.html"><img src="/yhWeb/Public/Home/Images/<?php echo ($poster['poster4']); ?>" width="229" /></a></li><?php endif; ?>
         </ul>
     </div>
     <!--Begin 热卖爆款商品 Begin-->
@@ -340,10 +340,10 @@
                             <?php if(is_array($hotred)): $i = 0; $__LIST__ = $hotred;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$hotred): $mod = ($i % 2 );++$i;?><li class="featureBox">
                                     <div class="box">
                                         <div class="imgbg">
-                                            <a href="#"><img src="/yhWeb/Public/Uploads/<?php echo ($hotred["picName"]); ?>" width="160" height="136"/></a>
+                                            <a href="/yhWeb/Home/Product/index/id/<?php echo ($hotred["id"]); ?>"><img src="/yhWeb/Public/Uploads/<?php echo ($hotred["picName"]); ?>" width="160" height="136"/></a>
                                         </div>
                                         <div class="name">
-                                            <a href="#">
+                                            <a href="/yhWeb/Home/Product/index/id/<?php echo ($hotred["id"]); ?>">
                                                 <h2><?php echo ($hotred["name"]); ?></h2>
                                                 <?php echo ($hotred["descr"]); ?>
                                             </a>
@@ -363,7 +363,7 @@
     </div>
     <!--End 热卖爆款商品 End-->
     <!--Begin 奶粉辅食 Begin-->
-    <?php if(is_array($goods)): $i = 0; $__LIST__ = $goods;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$goods): $mod = ($i % 2 );++$i;?><div class="i_t mar_10">
+    <?php if(is_array($categoods)): $i = 0; $__LIST__ = $categoods;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$goods): $mod = ($i % 2 );++$i; if(!empty($goods[3])): ?><div class="i_t mar_10">
             <span class="fl t_color"><?php echo ($goods[0]); ?></span>
         <span class="i_mores fr">
             <?php if(is_array($goods[1])): $i = 0; $__LIST__ = $goods[1];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$type): $mod = ($i % 2 );++$i;?><a href="#"><?php echo ($type); ?></a>&nbsp; &nbsp; | &nbsp; &nbsp;<?php endforeach; endif; else: echo "" ;endif; ?>
@@ -384,15 +384,15 @@
             <div class="milk_right">
                 <ul>
                     <?php if(is_array($goods[3])): $i = 0; $__LIST__ = $goods[3];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$showgoods): $mod = ($i % 2 );++$i;?><li>
-                            <div class="img"><a href="#"><img src="/yhWeb/Public/Uploads/<?php echo ($showgoods["picName"]); ?>" width="185" height="155"/></a></div>
-                            <div class="name"><a href="#"><?php echo ($showgoods["goodsName"]); ?></a></div>
+                            <div class="img"><a href="/yhWeb/Home/Product/index/id/<?php echo ($showgoods["id"]); ?>"><img src="/yhWeb/Public/Uploads/<?php echo ($showgoods["picName"]); ?>" width="185" height="155"/></a></div>
+                            <div class="name"><a href="/yhWeb/Home/Product/index/id/<?php echo ($showgoods["id"]); ?>"><?php echo ($showgoods["goodsName"]); ?></a></div>
                             <div class="price">
                                 <font>￥<span><?php echo ($showgoods["price"]); ?></span></font> &nbsp; 20R
                             </div>
                         </li><?php endforeach; endif; else: echo "" ;endif; ?>
                 </ul>
             </div>
-        </div><?php endforeach; endif; else: echo "" ;endif; ?>
+        </div><?php endif; endforeach; endif; else: echo "" ;endif; ?>
     <!--End 奶粉辅食 End-->
     <!--Begin 尿裤湿巾 Begin-->
 
@@ -478,7 +478,7 @@
     </div>
     <div class="btmbg">
         <div class="btm">
-            备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br/>
+            备案/许可证编号：豫ICP备12009302号-1-www.dingguagua.com Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br/>
             <img src="/yhWeb/Public/Home/Images/b_1.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_2.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_3.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_4.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_5.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_6.gif" width="98" height="33"/>
         </div>
     </div>

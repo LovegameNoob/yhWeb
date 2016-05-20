@@ -253,8 +253,8 @@
             <div class="top_slide_wrap">
                 <ul class="slide_box bxslider">
                     <li><img src="/yhWeb/Public/Home/Images/ban1.jpg" width="740" height="401"/></li>
-                    <li><img src="/yhWeb/Public/Home/Images/ban1.jpg" width="740" height="401"/></li>
-                    <li><img src="/yhWeb/Public/Home/Images/ban1.jpg" width="740" height="401"/></li>
+                    <li><img src="/yhWeb/Public/Home/Images/ban2.jpg" width="740" height="401"/></li>
+                    <li><img src="/yhWeb/Public/Home/Images/ban3.jpg" width="740" height="401"/></li>
                 </ul>
                 <div class="op_btns clearfix">
                     <a href="#" class="op_btn op_prev"><span></span></a>
@@ -383,7 +383,7 @@
                     <div class="s_img"><a href="/yhWeb/Home/Product/index/id/<?php echo ($limit[0][1]["id"]); ?>"><img src="/yhWeb/Public/Uploads/<?php echo ($limit[0][1]["picName"]); ?>" width="185" height="155"/></a></div>
                     <div class="s_price">￥<span><?php echo ($limit[0][1]["price"]); ?></span></div>
                     <div class="s_name">
-                        <h2><a href="#"><?php echo ($limit[0][0]["goodsName"]); ?></a></h2>
+                        <h2><a href="#"><?php echo ($limit[0][1]["goodsName"]); ?></a></h2>
                     </div>
                 </div><?php endif; ?>
             <?php if(!empty($limit[1][0])): ?><div class="sell_b1">
@@ -798,7 +798,7 @@
 </div>
 <div class="btmbg">
     <div class="btm">
-        备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br/>
+        备案/许可证编号：豫ICP备12009302号-1-www.dingguagua.com Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br/>
         <img src="/yhWeb/Public/Home/images/b_1.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/images/b_2.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/images/b_3.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/images/b_4.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/images/b_5.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/images/b_6.gif" width="98" height="33"/>
     </div>
 </div>

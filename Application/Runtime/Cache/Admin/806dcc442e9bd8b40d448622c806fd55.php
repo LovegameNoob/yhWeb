@@ -1,5 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); ?>
-<html>
+<?php if (!defined('THINK_PATH')) exit();?><html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>主要内容区main</title>
@@ -170,26 +169,31 @@
                     <th align="center" valign="middle" class="borderright">激活状态</th>
                     <th align="center" valign="middle">操作</th>
                 </tr>
-                <?php if (is_array($user)): foreach ($user as $key => $user): ?>
-                    <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+                <?php if(is_array($user)): foreach($user as $key=>$user): ?><tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
 
-                    <td align='center' valign='middle' class='borderright borderbottom'><?php echo($user["id"]); ?></td>
-                    <td align='center' valign='middle' class='borderright borderbottom'><?php echo($user["userName"]); ?></td>
-                    <td align='center' valign='middle' class='borderright borderbottom'><?php echo($user["trueName"]); ?></td>
-                    <td align='center' valign='middle' class='borderright borderbottom'><?php echo($user["sex"]); ?></td>
-                    <td align='center' valign='middle' class='borderright borderbottom'><?php echo($user["email"]); ?></td>
-                    <td align='center' valign='middle' class='borderright borderbottom'><?php echo($user["phone"]); ?></td>
-                    <td align='center' valign='middle' class='borderright borderbottom'><?php if (empty($user["face"])): ?>无头像
-                        <?php else: ?>
-                            <img src="/yhWeb/Public/Uploads/<?php echo($user["face"]); ?>" alt="" width="50" height="50"/><?php endif; ?></td>
-                    <td align='center' valign='middle' class='borderright borderbottom'><?php echo(date("Y-m-d H:i:s", $user["regTime"])); ?></td>
-                    <td align='center' valign='middle' class='borderright borderbottom flag_<?php echo($user["id"]); ?>'><?php echo($user["activeFlag"]); ?></td>
+                        <td align='center' valign='middle' class='borderright borderbottom'><?php echo ($user["id"]); ?></td>
+                        <td align='center' valign='middle' class='borderright borderbottom'><?php echo ($user["userName"]); ?></td>
+                        <td align='center' valign='middle' class='borderright borderbottom'><?php echo ($user["trueName"]); ?></td>
+                        <td align='center' valign='middle' class='borderright borderbottom'><?php echo ($user["sex"]); ?></td>
+                        <td align='center' valign='middle' class='borderright borderbottom'><?php echo ($user["email"]); ?></td>
+                        <td align='center' valign='middle' class='borderright borderbottom'><?php echo ($user["phone"]); ?></td>
+                        <td align='center' valign='middle' class='borderright borderbottom'>
+                            <?php if(empty($user["face"])): ?>无头像
+                                <?php else: ?>
+                                <img src="/yhWeb/Public/Uploads/<?php echo ($user["face"]); ?>" alt="" width="50" height="50"/><?php endif; ?>
+                        </td>
+                        <td align='center' valign='middle' class='borderright borderbottom'><?php echo (date("Y-m-d H:i:s",$user["regTime"])); ?></td>
+                        <td align='center' valign='middle' class='borderright borderbottom flag_<?php echo ($user["id"]); ?>'><?php echo ($user["activeFlag"]); ?></td>
 
-                    <td align='center' valign='middle' class='borderbottom'>
-                        <a href='/yhWeb/Admin/Member/updateMember/id/<?php echo($user["id"]); ?>' class='add'>编辑</a><span class='gray'>&nbsp;|&nbsp;</span>
-                        <a href='/yhWeb/Admin/Member/del/id/<?php echo($user["id"]); ?>' class='add'>删除</a><span class='gray'>&nbsp;|&nbsp;</span>
-                        <a href='javascript:void(0)' class='ban_<?php echo($user["id"]); ?>' onclick="ban(<?php echo($user["id"]); ?>)"><?php if ($user["activeFlag"] == 1): ?>禁用<?php else: ?>启用<?php endif; ?></a>
-                    </td>
+                        <td align='center' valign='middle' class='borderbottom'>
+                            <a href='/yhWeb/Admin/Member/updateMember/id/<?php echo ($user["id"]); ?>' class='add'>编辑</a><span class='gray'>&nbsp;|&nbsp;</span>
+                            <a href='/yhWeb/Admin/Member/del/id/<?php echo ($user["id"]); ?>' class='add'>删除</a><span class='gray'>&nbsp;|&nbsp;</span>
+                            <a href='javascript:void(0)' class='ban_<?php echo ($user["id"]); ?>' onclick="ban(<?php echo ($user["id"]); ?>)">
+                                <?php if($user["activeFlag"] == 1 ): ?>禁用
+                                    <?php else: ?>
+                                    启用<?php endif; ?>
+                            </a>
+                        </td>
 
                     </tr><?php endforeach; endif; ?>
             </table>

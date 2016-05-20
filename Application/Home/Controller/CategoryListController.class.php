@@ -11,14 +11,14 @@ use Think\Controller;
 
 class CategoryListController extends PublicController
 {
-    public function index($typeid)
+    public function index($typeid,$condition=null)
     {
         session('typeId', $typeid);
         $type = D('Type');
         $navPath = $type->navPath($typeid);
         $brand = D('Goods');
         $brands = $brand->getBrand($typeid);
-        $goods = $brand->getGoods($typeid);
+        $goods = $brand->getGoods($typeid,$condition);
         $property = D('Property');
         $goodspro = $property->getProperty($typeid);
         $goods=$this->addConllectClass($goods);
@@ -27,6 +27,7 @@ class CategoryListController extends PublicController
         $this->assign('Filtergoods', $goods);
         $this->assign('brand', $brands);
         $this->assign('path', $navPath);
+        $this->assign('select',$condition);
         $this->assign('scanHistory',$_SESSION[$this->tempid]);
         $this->display('CategoryList');
     }
@@ -47,11 +48,11 @@ class CategoryListController extends PublicController
     public function search()
     {
         $d = D('Goods');
-        $res = $d->field('id,typeId,goodsName,price,priceLower,picName')->where("descr LIKE '%{$_POST['search']}%'")->select();
+        $res = $d->field('id,typeId,goodsName,price,priceLower,picName')->where("CONCAT(goodsName,descr) LIKE '%{$_POST['search']}%'AND state=2")->select();
         if (empty($res)) {
             $type = $d->table('type')->where("name LIKE '%{$_POST['search']}%'")->select();
             foreach ($type as $key => $val) {
-                $res = $d->field('id,typeId,goodsName,price,priceLower,picName')->where("typeId={$val['id']}")->select();
+                $res = $d->field('id,typeId,goodsName,price,priceLower,picName')->where("typeId={$val['id']} AND state=2")->select();
             }
         }
         $brands = $d->getBrand($res[0]['typeId']);
@@ -106,6 +107,24 @@ class CategoryListController extends PublicController
             }
         }
         return $goods;
+    }
+    public function goodSort($act=null)
+    {
+        switch($act)
+        {
+            case 'sales':
+                $this->index($_SESSION['typeId'],$act);
+                break;
+            case 'price':
+                $this->index($_SESSION['typeId'],$act);
+                break;
+            case 'new':
+                $this->index($_SESSION['typeId'],'addTime');
+                break;
+            default:
+                $this->index($_SESSION['typeId']);
+                break;
+        }
     }
 
 

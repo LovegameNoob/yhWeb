@@ -340,7 +340,7 @@
                         <a href="#"><img src="/yhWeb/Public/Home/Images/sh_5.gif"/></a>
                     </div>
                 </div>
-                <div class="d_care"><a onclick="addCollection('MyDiv','fade',<?php echo ($goodsdetail["goods"]["id"]); ?>);">关注商品</a></div>
+                <div class="d_care <?php echo ($goodsdetail["class"]); ?>"><a onclick="addCollection('MyDiv','fade',<?php echo ($goodsdetail["goods"]["id"]); ?>);">关注商品</a></div>
             </div>
             <div class="des_join">
                 <div class="j_nums">
@@ -369,8 +369,8 @@
             }
         </script>
         <div class="s_brand">
-            <div class="s_brand_img"><img src="/yhWeb/Public/Home/Images/sbrand.jpg" width="188" height="132"/></div>
-            <div class="s_brand_c"><a href="#">进入品牌专区</a></div>
+            <?php if(!empty($goodsdetail["goods"]["brandsImg"])): ?><img src="/yhWeb/Public/Home/Images/<?php echo ($goodsdetail["goods"]["brandsImg"]); ?>" width="188" height="188"/>
+            <div class="s_brand_c"><a href="#">进入品牌专区</a></div><?php endif; ?>
         </div>
 
 
@@ -449,10 +449,7 @@
                     <!--</table>-->
 
                     <p align="center">
-                        <img src="/yhWeb/Public/Home/Images/de2.jpg" width="746" height="425"/><br/><br/>
-                        <img src="/yhWeb/Public/Home/Images/de3.jpg" width="750" height="417"/><br/><br/>
-                        <img src="/yhWeb/Public/Home/Images/de4.jpg" width="750" height="409"/><br/><br/>
-                        <img src="/yhWeb/Public/Home/Images/de5.jpg" width="750" height="409"/>
+                        <?php if(is_array($goodsimg["picDetail"])): $i = 0; $__LIST__ = $goodsimg["picDetail"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$picDetail): $mod = ($i % 2 );++$i;?><img src="/yhWeb/Public/Uploads/<?php echo ($picDetail); ?>" /><br/><br/><?php endforeach; endif; else: echo "" ;endif; ?>
                     </p>
 
                 </div>
@@ -683,7 +680,7 @@
     </div>
     <div class="btmbg">
         <div class="btm">
-            备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br/>
+            备案/许可证编号：豫ICP备12009302号-1-www.dingguagua.com Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br/>
             <img src="/yhWeb/Public/Home/Images/b_1.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_2.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_3.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_4.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_5.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_6.gif" width="98" height="33"/>
         </div>
     </div>
@@ -699,26 +696,29 @@
 <![endif]-->
 </html>
 <script>
+    $(function(){
+        $('.collect').css('background','url(/yhWeb/Public/Home/Images/heart_h.png) no-repeat 10px center');
+    })
     function addCollection(show_div, bg_div,id)
     {
-        $('.d_care').css('background','url(/yhWeb/Public/Home/Images/heart_h.png) no-repeat 10px center');
-//        $.post('/yhWeb/Home/Product/addCollection',{id:id},function (data){
-//            if(data.status)
-//            {
-//                document.getElementById(show_div).style.display = 'block';
-//                document.getElementById(bg_div).style.display = 'block';
-//                var bgdiv = document.getElementById(bg_div);
-//                bgdiv.style.width = document.body.scrollWidth;
-//                // bgdiv.style.height = $(document).height();
-//                $("#" + bg_div).height($(document).height());
-//            }
-//            else
-//            {
-//                var r = confirm('请先登陆');
-//                if (r) {
-//                    window.location = '/yhWeb/Home/User/Login'
-//                }
-//            }
-//        })
+        $.post('/yhWeb/Home/CategoryList/addCollection',{id:id},function (data){
+            if(data.status)
+            {
+                $('.d_care').css('background','url(/yhWeb/Public/Home/Images/heart_h.png) no-repeat 10px center');
+                document.getElementById(show_div).style.display = 'block';
+                document.getElementById(bg_div).style.display = 'block';
+                var bgdiv = document.getElementById(bg_div);
+                bgdiv.style.width = document.body.scrollWidth;
+                // bgdiv.style.height = $(document).height();
+                $("#" + bg_div).height($(document).height());
+            }
+            else
+            {
+                var r = confirm('请先登陆');
+                if (r) {
+                    window.location = '/yhWeb/Home/User/Login'
+                }
+            }
+        })
     }
 </script>

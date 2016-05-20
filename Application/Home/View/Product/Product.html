@@ -360,7 +360,7 @@
                         <a href="#"><img src="__PUBLIC__/Home/Images/sh_5.gif"/></a>
                     </div>
                 </div>
-                <div class="d_care"><a onclick="addCollection('MyDiv','fade',{$goodsdetail.goods.id});">关注商品</a></div>
+                <div class="d_care {$goodsdetail.class}"><a onclick="addCollection('MyDiv','fade',{$goodsdetail.goods.id});">关注商品</a></div>
             </div>
             <div class="des_join">
                 <div class="j_nums">
@@ -389,8 +389,10 @@
             }
         </script>
         <div class="s_brand">
-            <div class="s_brand_img"><img src="__PUBLIC__/Home/Images/sbrand.jpg" width="188" height="132"/></div>
+            <notempty name="goodsdetail.goods.brandsImg">
+            <img src="__PUBLIC__/Home/Images/{$goodsdetail.goods.brandsImg}" width="188" height="188"/>
             <div class="s_brand_c"><a href="#">进入品牌专区</a></div>
+            </notempty>
         </div>
 
 
@@ -475,10 +477,9 @@
                     <!--</table>-->
 
                     <p align="center">
-                        <img src="__PUBLIC__/Home/Images/de2.jpg" width="746" height="425"/><br/><br/>
-                        <img src="__PUBLIC__/Home/Images/de3.jpg" width="750" height="417"/><br/><br/>
-                        <img src="__PUBLIC__/Home/Images/de4.jpg" width="750" height="409"/><br/><br/>
-                        <img src="__PUBLIC__/Home/Images/de5.jpg" width="750" height="409"/>
+                        <volist name="goodsimg.picDetail" id="picDetail">
+                        <img src="__PUBLIC__/Uploads/{$picDetail}" /><br/><br/>
+                        </volist>
                     </p>
 
                 </div>
@@ -709,7 +710,7 @@
     </div>
     <div class="btmbg">
         <div class="btm">
-            备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br/>
+            备案/许可证编号：豫ICP备12009302号-1-www.dingguagua.com Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br/>
             <img src="__PUBLIC__/Home/Images/b_1.gif" width="98" height="33"/><img src="__PUBLIC__/Home/Images/b_2.gif" width="98" height="33"/><img src="__PUBLIC__/Home/Images/b_3.gif" width="98" height="33"/><img src="__PUBLIC__/Home/Images/b_4.gif" width="98" height="33"/><img src="__PUBLIC__/Home/Images/b_5.gif" width="98" height="33"/><img src="__PUBLIC__/Home/Images/b_6.gif" width="98" height="33"/>
         </div>
     </div>
@@ -726,14 +727,14 @@
 </html>
 <script>
     $(function(){
-
+        $('.collect').css('background','url(__PUBLIC__/Home/Images/heart_h.png) no-repeat 10px center');
     })
     function addCollection(show_div, bg_div,id)
     {
-        $('.d_care').css('background','url(__PUBLIC__/Home/Images/heart_h.png) no-repeat 10px center');
-        $.post('__URL__/addCollection',{id:id},function (data){
+        $.post('__MODULE__/CategoryList/addCollection',{id:id},function (data){
             if(data.status)
             {
+                $('.d_care').css('background','url(__PUBLIC__/Home/Images/heart_h.png) no-repeat 10px center');
                 document.getElementById(show_div).style.display = 'block';
                 document.getElementById(bg_div).style.display = 'block';
                 var bgdiv = document.getElementById(bg_div);

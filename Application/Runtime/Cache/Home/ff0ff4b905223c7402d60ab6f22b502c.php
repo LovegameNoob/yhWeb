@@ -345,46 +345,46 @@
                                 <?php else: ?>
                                 已收货<?php endif; ?>
                         </td>
-                        <td>取消订单</td>
+                        <td><a href="/yhWeb/Home/Member/cancel/id/<?php echo ($orders["id"]); ?>">取消订单</a></td>
                     </tr><?php endforeach; endif; else: echo "" ;endif; ?>
             </table>
 
 
-            <div class="mem_tit">合并订单</div>
-            <table border="0" class="order_tab" style="width:930px;" cellspacing="0" cellpadding="0">
-                <tr>
-                    <td width="135" align="right">主订单</td>
-                    <td width="220">
-                        <select class="jj" name="order1">
-                            <option value="0" selected="selected">请选择...</option>
-                            <option value="1">2015092626589</option>
-                            <option value="2">2015092626589</option>
-                            <option value="3">2015092626589</option>
-                            <option value="4">2015092626589</option>
-                        </select>
-                    </td>
-                    <td width="135" align="right">从订单</td>
-                    <td width="220">
-                        <select class="jj" name="order2">
-                            <option value="0" selected="selected">请选择...</option>
-                            <option value="1">2015092626589</option>
-                            <option value="2">2015092626589</option>
-                            <option value="3">2015092626589</option>
-                            <option value="4">2015092626589</option>
-                        </select>
-                    </td>
-                    <td>
-                        <div class="btn_u"><a href="#">合并订单</a></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td colspan="4" style="font-family:'宋体'; padding:20px 10px 50px 10px;">
-                        订单合并是在发货前将相同状态的订单合并成一新的订单。 <br/>
-                        收货地址，送货方式等以主定单为准。
-                    </td>
-                </tr>
-            </table>
+            <!--<div class="mem_tit">合并订单</div>-->
+            <!--<table border="0" class="order_tab" style="width:930px;" cellspacing="0" cellpadding="0">-->
+                <!--<tr>-->
+                    <!--<td width="135" align="right">主订单</td>-->
+                    <!--<td width="220">-->
+                        <!--<select class="jj" name="order1">-->
+                            <!--<option value="0" selected="selected">请选择...</option>-->
+                            <!--<option value="1">2015092626589</option>-->
+                            <!--<option value="2">2015092626589</option>-->
+                            <!--<option value="3">2015092626589</option>-->
+                            <!--<option value="4">2015092626589</option>-->
+                        <!--</select>-->
+                    <!--</td>-->
+                    <!--<td width="135" align="right">从订单</td>-->
+                    <!--<td width="220">-->
+                        <!--<select class="jj" name="order2">-->
+                            <!--<option value="0" selected="selected">请选择...</option>-->
+                            <!--<option value="1">2015092626589</option>-->
+                            <!--<option value="2">2015092626589</option>-->
+                            <!--<option value="3">2015092626589</option>-->
+                            <!--<option value="4">2015092626589</option>-->
+                        <!--</select>-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--<div class="btn_u"><a href="#">合并订单</a></div>-->
+                    <!--</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>&nbsp;</td>-->
+                    <!--<td colspan="4" style="font-family:'宋体'; padding:20px 10px 50px 10px;">-->
+                        <!--订单合并是在发货前将相同状态的订单合并成一新的订单。 <br/>-->
+                        <!--收货地址，送货方式等以主定单为准。-->
+                    <!--</td>-->
+                <!--</tr>-->
+            <!--</table>-->
 
 
         </div>
@@ -467,7 +467,7 @@
     </div>
     <div class="btmbg">
         <div class="btm">
-            备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br/>
+            备案/许可证编号：豫ICP备12009302号-1-www.dingguagua.com Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br/>
             <img src="/yhWeb/Public/Home/Images/b_1.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_2.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_3.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_4.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_5.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_6.gif" width="98" height="33"/>
         </div>
     </div>

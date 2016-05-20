@@ -99,7 +99,9 @@
         </span>
         <!--End 所在收货地区 End-->
         <span class="fr">
-        	<span class="fl">你好，请<a href="Login.html">登录</a>&nbsp; <a href="Regist.html" style="color:#ff4e00;">免费注册</a>&nbsp;|&nbsp;<a href="#">我的订单</a>&nbsp;|</span>
+        	    <?php if(empty($_SESSION['userName'])): ?><span class="fl">你好，请<a href="/yhWeb/Home/User/Login">登录</a>&nbsp; <a href="/yhWeb/Home/User/Regist" style="color:#ff4e00;">免费注册</a>&nbsp;|&nbsp;</span>
+                    <?php else: ?>
+                    <span class="fl">你好，<?php echo (session('userName')); ?>&nbsp;|&nbsp;<a href="/yhWeb/Home/User/LoginOut">退出</a>&nbsp;              |&nbsp;<a href="/yhWeb/Home/Member/Member_Order">我的订单</a>&nbsp;|</span><?php endif; ?>
         	<span class="ss">
             	<div class="ss_list">
                     <a href="#">收藏夹</a>
@@ -145,45 +147,133 @@
         </span>
     </div>
 </div>
-<div class="m_top_bg">
-    <div class="top">
-        <div class="m_logo"><a href="Index.html"><img src="/yhWeb/Public/Home/Images/logo1.png"/></a></div>
-        <div class="m_search">
-            <form>
-                <input type="text" value="" class="m_ipt"/>
-                <input type="submit" value="搜索" class="m_btn"/>
-            </form>
-            <span class="fl"><a href="#">咖啡</a><a href="#">iphone 6S</a><a href="#">新鲜美食</a><a href="#">蛋糕</a><a href="#">日用品</a><a href="#">连衣裙</a></span>
+<div class="top">
+    <div class="logo"><a href="<?php echo U('Index/index');?>"><img src="/yhWeb/Public/Home/Images/logo.png"/></a></div>
+    <div class="search">
+        <form method="post" action="/yhWeb/Home/CategoryList/search">
+            <input type="text" value="" class="s_ipt" name="search"/>
+            <input type="submit" value="搜索" class="s_btn"/>
+        </form>
+        <span class="fl"><a href="#">咖啡</a><a href="#">iphone 6S</a><a href="#">新鲜美食</a><a href="#">蛋糕</a><a href="#">日用品</a><a href="#">连衣裙</a></span>
+    </div>
+    <div class="i_car">
+        <div class="car_t">购物车 [ <span id="typenum"><?php if(!empty($_SESSION['userId'])): echo ($_SESSION['cart']['typenum']); ?>
+            <?php else: ?>
+            0<?php endif; ?></span> ]
         </div>
-        <div class="i_car">
-            <div class="car_t">购物车 [ <span>3</span> ]</div>
-            <div class="car_bg">
-                <!--Begin 购物车未登录 Begin-->
-                <div class="un_login">还未登录！<a href="Login.html" style="color:#ff4e00;">马上登录</a> 查看购物车！</div>
+        <div class="car_bg">
+            <!--Begin 购物车未登录 Begin-->
+            <?php if(empty($_SESSION['userId'])): ?><div class="un_login">还未登录！<a href="/yhWeb/Home/User/Login" style="color:#ff4e00;">马上登录</a> 查看购物车！</div>
                 <!--End 购物车未登录 End-->
+                <?php else: ?>
                 <!--Begin 购物车已登录 Begin-->
-                <ul class="cars">
-                    <li>
-                        <div class="img"><a href="#"><img src="/yhWeb/Public/Home/Images/car1.jpg" width="58" height="58"/></a></div>
-                        <div class="name"><a href="#">法颂浪漫梦境50ML 香水女士持久清新淡香 送2ML小样3只</a></div>
-                        <div class="price"><font color="#ff4e00">￥399</font> X1</div>
-                    </li>
-                    <li>
-                        <div class="img"><a href="#"><img src="/yhWeb/Public/Home/Images/car2.jpg" width="58" height="58"/></a></div>
-                        <div class="name"><a href="#">香奈儿（Chanel）邂逅活力淡香水50ml</a></div>
-                        <div class="price"><font color="#ff4e00">￥399</font> X1</div>
-                    </li>
-                    <li>
-                        <div class="img"><a href="#"><img src="/yhWeb/Public/Home/Images/car2.jpg" width="58" height="58"/></a></div>
-                        <div class="name"><a href="#">香奈儿（Chanel）邂逅活力淡香水50ml</a></div>
-                        <div class="price"><font color="#ff4e00">￥399</font> X1</div>
-                    </li>
+                <?php if(empty($_SESSION['cart']['goods'])): ?><div class="un_login">购物车里空空如也~</div>
+                    <?php else: ?>
+                    <ul class="cars">
+                        <?php if(is_array($_SESSION['cart']['goods'])): $i = 0; $__LIST__ = $_SESSION['cart']['goods'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$goods): $mod = ($i % 2 );++$i;?><li>
+                                <div class="img"><a href="#"><img src="/yhWeb/Public/Uploads/<?php echo ($goods["picName"]); ?>" width="58" height="58"/></a></div>
+                                <div class="name"><a href="#"><?php echo ($goods["goodsName"]); ?></a></div>
+                                <div class="price" id="<?php echo ($goods["id"]); ?>"><font color="#ff4e00">￥<?php echo ($goods["price"]); ?></font> X<?php echo ($goods["number"]); ?></div>
+                                <button class="cartdel" cartid="<?php echo ($goods["id"]); ?>">删除</button>
+                            </li><?php endforeach; endif; else: echo "" ;endif; ?>
+                    </ul>
+                    <div class="price_sum">共计&nbsp; <font color="#ff4e00">￥</font><span id="total"><?php echo ($_SESSION['cart']['total']); ?></span></div>
+                    <div class="price_a"><a href="/yhWeb/Home/BuyCar/index">去购物车结算</a></div><?php endif; ?>
+                <!--End 购物车已登录 End--><?php endif; ?>
+        </div>
+    </div>
+</div>
+<script>
+    function ShowDiv_1(show_div, bg_div, id) {
+        var num = $('.n_ipt').val();
+        $.post('/yhWeb/Home/BuyCar/addBuyCar', {id: id, num: num}, function (data) {
+            if (data.status == 0) {
+                alert('添加失败')
+            }
+            else if (data.status == 2) {
+                var r = confirm('请先登陆');
+                if (r) {
+                    window.location = '/yhWeb/Home/User/Login'
+                }
+            }
+            else {
+                $('#cartmsg').html(data.msg)
+                $('#typenum').text(data.typenum)
+                $('.cars').html(data.content)
+                $('#total').text(data.total)
+                document.getElementById(show_div).style.display = 'block';
+                document.getElementById(bg_div).style.display = 'block';
+                var bgdiv = document.getElementById(bg_div);
+                bgdiv.style.width = document.body.scrollWidth;
+                // bgdiv.style.height = $(document).height();
+                $("#" + bg_div).height($(document).height());
+            }
+
+        }, 'json')
+    }
+    function ShowDiv(show_div, bg_div, id) {
+        $('.b_sure').attr("href", "/yhWeb/Home/BuyCar/cartDelete/id/"
+                + id)
+        document.getElementById(show_div).style.display = 'block';
+        document.getElementById(bg_div).style.display = 'block';
+        var bgdiv = document.getElementById(bg_div);
+        bgdiv.style.width = document.body.scrollWidth;
+        // bgdiv.style.height = $(document).height();
+        $("#" + bg_div).height($(document).height());
+    }
+    $(function () {
+        $('.cartdel').click(function () {
+            $.post('/yhWeb/Home/BuyCar/cartDel', {id: $(this).attr('cartid')}, function (data) {
+                $('#typenum').text(data.typenum)
+                if ($('.cars li').length <= 0) {
+                    $('.car_bg').html('<div class="un_login">购物车里空空如也~</div>');
+                }
+                else {
+                    $('#total').text(data.total)
+                }
+            }, 'json')
+        })
+
+    })
+
+</script>
+<!--End Header End-->
+<!--Begin Menu Begin-->
+<div class="menu_bg">
+    <div class="menu">
+        <!--Begin 商品分类详情 Begin-->
+        <div class="nav">
+            <div class="nav_t">全部商品分类</div>
+            <div class="leftNav" style="display: none">
+                <ul>
+                    <?php if(is_array($_SESSION['typerows'])): $i = 0; $__LIST__ = $_SESSION['typerows'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$typeone): $mod = ($i % 2 );++$i;?><li>
+                            <div class="fj">
+                                <span class="n_img"><span></span><img src="/yhWeb/Public/Home/Images/<?php echo ($typeone["one"]["icon"]); ?>"/></span>
+                                <span class="fl"><a href="/yhWeb/Home/Category/index?id=<?php echo ($typeone["one"]["id"]); ?>"><?php echo ($typeone["one"]["name"]); ?></a></span>
+                            </div>
+                            <div class="zj">
+                                <div class="zj_l">
+                                    <?php if(is_array($typeone["two"])): $i = 0; $__LIST__ = $typeone["two"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$typetwo): $mod = ($i % 2 );++$i;?><div class="zj_l_c">
+                                            <h2><a href="/yhWeb/Home/CategoryList/index/typeid/<?php echo ($typetwo["id"]); ?>"><?php echo ($typetwo["name"]); ?></a></h2>
+                                            <?php if(is_array($typetwo["three"])): $i = 0; $__LIST__ = $typetwo["three"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$typethree): $mod = ($i % 2 );++$i;?><a href="/yhWeb/Home/CategoryList/index/typeid/<?php echo ($typethree["id"]); ?>"><?php echo ($typethree["name"]); ?></a>|<?php endforeach; endif; else: echo "" ;endif; ?>
+                                        </div><?php endforeach; endif; else: echo "" ;endif; ?>
+                                </div>
+                            </div>
+                        </li><?php endforeach; endif; else: echo "" ;endif; ?>
                 </ul>
-                <div class="price_sum">共计&nbsp; <font color="#ff4e00">￥</font><span>1058</span></div>
-                <div class="price_a"><a href="#">去购物车结算</a></div>
-                <!--End 购物车已登录 End-->
             </div>
         </div>
+        <!--End 商品分类详情 End-->
+        <ul class="menu_r">
+            <li><a href="/yhWeb/Home/Index">首页</a></li>
+            <li><a href="/yhWeb/Home/Category/Index/id/1">美食</a></li>
+            <li><a href="/yhWeb/Home/Category/Index/id/23">生鲜</a></li>
+            <li><a href="/yhWeb/Home/Category/Index/id/28">家居</a></li>
+            <li><a href="/yhWeb/Home/Category/Index/id/27">女装</a></li>
+            <li><a href="/yhWeb/Home/Category/Index/id/24">美妆</a></li>
+            <li><a href="/yhWeb/Home/Category/Index/id/25">数码</a></li>
+        </ul>
+        <div class="m_ad">中秋送好礼！</div>
     </div>
 </div>
 <!--End Header End-->
@@ -191,48 +281,52 @@
     <!--Begin 用户中心 Begin -->
     <div class="m_content">
         <div class="m_left">
-            <div class="left_n">管理中心</div>
-            <div class="left_m">
-                <div class="left_m_t t_bg1">订单中心</div>
-                <ul>
-                    <li><a href="Member_Order.html">我的订单</a></li>
-                    <li><a href="Member_Address.html">收货地址</a></li>
-                    <li><a href="#">缺货登记</a></li>
-                    <li><a href="#">跟踪订单</a></li>
-                </ul>
-            </div>
-            <div class="left_m">
-                <div class="left_m_t t_bg2">会员中心</div>
-                <ul>
-                    <li><a href="Member_User.html">用户信息</a></li>
-                    <li><a href="Member_Collect.html" class="now">我的收藏</a></li>
-                    <li><a href="Member_Msg.html">我的留言</a></li>
-                    <li><a href="Member_Links.html">推广链接</a></li>
-                    <li><a href="#">我的评论</a></li>
-                </ul>
-            </div>
-            <div class="left_m">
-                <div class="left_m_t t_bg3">账户中心</div>
-                <ul>
-                    <li><a href="Member_Safe.html">账户安全</a></li>
-                    <li><a href="Member_Packet.html">我的红包</a></li>
-                    <li><a href="Member_Money.html">资金管理</a></li>
-                </ul>
-            </div>
-            <div class="left_m">
-                <div class="left_m_t t_bg4">分销中心</div>
-                <ul>
-                    <li><a href="Member_Member.html">我的会员</a></li>
-                    <li><a href="Member_Results.html">我的业绩</a></li>
-                    <li><a href="Member_Commission.html">我的佣金</a></li>
-                    <li><a href="Member_Cash.html">申请提现</a></li>
-                </ul>
-            </div>
-        </div>
+    <div class="left_n">管理中心</div>
+    <div class="left_m">
+        <div class="left_m_t t_bg1">订单中心</div>
+        <ul>
+            <li><a href="/yhWeb/Home/Member/Member_Order">我的订单</a></li>
+            <li><a href="/yhWeb/Home/Member/Member_Address">收货地址</a></li>
+            <li><a href="#">缺货登记</a></li>
+            <li><a href="#">跟踪订单</a></li>
+        </ul>
+    </div>
+    <div class="left_m">
+        <div class="left_m_t t_bg2">会员中心</div>
+        <ul>
+            <li><a href="/yhWeb/Home/Member/index">用户信息</a></li>
+            <li><a href="/yhWeb/Home/Member/Member_Collect">我的收藏</a></li>
+            <li><a href="/yhWeb/Home/Member/Member_Msg">我的留言</a></li>
+            <li><a href="/yhWeb/Home/Member/Member_Links">推广链接</a></li>
+            <li><a href="#">我的评论</a></li>
+        </ul>
+    </div>
+    <div class="left_m">
+        <div class="left_m_t t_bg3">账户中心</div>
+        <ul>
+            <li><a href="/yhWeb/Home/Member/Member_Safe">账户安全</a></li>
+            <li><a href="/yhWeb/Home/Member/Member_Packet">我的红包</a></li>
+            <li><a href="/yhWeb/Home/Member/Member_Money">资金管理</a></li>
+        </ul>
+    </div>
+    <div class="left_m">
+        <div class="left_m_t t_bg4">分销中心</div>
+        <ul>
+            <li><a href="/yhWeb/Home/Member/Member_Member">我的会员</a></li>
+            <li><a href="/yhWeb/Home/Member/Member_Results">我的业绩</a></li>
+            <li><a href="/yhWeb/Home/Member/Member_Commission">我的佣金</a></li>
+            <li><a href="/yhWeb/Home/Member/Member_Cash">申请提现</a></li>
+        </ul>
+    </div>
+</div>
+<script src="/yhWeb/Public/jquery.js"></script>
+<script>
+
+</script>
         <div class="m_right">
             <p></p>
             <div class="mem_tit">
-                <span class="fr" style="font-size:12px; color:#55555; font-family:'宋体'; margin-top:5px;">共发现4件</span>我的收藏
+                <span class="fr" style="font-size:12px; color:#55555; font-family:'宋体'; margin-top:5px;">共发现<?php echo (count($collect)); ?>件</span>我的收藏
             </div>
             <table border="0" class="order_tab" style="width:930px;" cellspacing="0" cellpadding="0">
                 <tr>
@@ -240,38 +334,15 @@
                     <td align="center" width="180">价格</td>
                     <td align="center" width="270">操作</td>
                 </tr>
-                <tr>
+                <?php if(is_array($collect)): $i = 0; $__LIST__ = $collect;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$collect): $mod = ($i % 2 );++$i;?><tr>
                     <td style="font-family:'宋体';">
-                        <div class="sm_img"><img src="/yhWeb/Public/Home/Images/simg.jpg" width="48" height="48"/></div>
-                        法颂浪漫梦境50ML 香水女士持久清新淡香 送2ML小样3只
+                        <div class="sm_img"><img src="/yhWeb/Public/Uploads/<?php echo ($collect["picName"]); ?>" width="48" height="48"/></div>
+                        <?php echo ($collect["goodsName"]); ?>
                     </td>
-                    <td align="center">￥456.00</td>
+                    <td align="center">￥<?php echo ($collect["price"]); ?></td>
                     <td align="center"><a href="#">关注</a>&nbsp; &nbsp; <a href="#" style="color:#ff4e00;">加入购物车</a>&nbsp; &nbsp; <a href="#">删除</a></td>
-                </tr>
-                <tr>
-                    <td style="font-family:'宋体';">
-                        <div class="sm_img"><img src="/yhWeb/Public/Home/Images/simg.jpg" width="48" height="48"/></div>
-                        法颂浪漫梦境50ML 香水女士持久清新淡香 送2ML小样3只
-                    </td>
-                    <td align="center">￥456.00</td>
-                    <td align="center"><a href="#">关注</a>&nbsp; &nbsp; <a href="#" style="color:#ff4e00;">加入购物车</a>&nbsp; &nbsp; <a href="#">删除</a></td>
-                </tr>
-                <tr>
-                    <td style="font-family:'宋体';">
-                        <div class="sm_img"><img src="/yhWeb/Public/Home/Images/simg.jpg" width="48" height="48"/></div>
-                        法颂浪漫梦境50ML 香水女士持久清新淡香 送2ML小样3只
-                    </td>
-                    <td align="center">￥456.00</td>
-                    <td align="center"><a href="#">关注</a>&nbsp; &nbsp; <a href="#" style="color:#ff4e00;">加入购物车</a>&nbsp; &nbsp; <a href="#">删除</a></td>
-                </tr>
-                <tr>
-                    <td style="font-family:'宋体';">
-                        <div class="sm_img"><img src="/yhWeb/Public/Home/Images/simg.jpg" width="48" height="48"/></div>
-                        法颂浪漫梦境50ML 香水女士持久清新淡香 送2ML小样3只
-                    </td>
-                    <td align="center">￥456.00</td>
-                    <td align="center"><a href="#">关注</a>&nbsp; &nbsp; <a href="#" style="color:#ff4e00;">加入购物车</a>&nbsp; &nbsp; <a href="#">删除</a></td>
-                </tr>
+                </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+
             </table>
 
 
@@ -355,7 +426,7 @@
     </div>
     <div class="btmbg">
         <div class="btm">
-            备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br/>
+            备案/许可证编号：豫ICP备12009302号-1-www.dingguagua.com Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br/>
             <img src="/yhWeb/Public/Home/Images/b_1.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_2.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_3.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_4.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_5.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_6.gif" width="98" height="33"/>
         </div>
     </div>

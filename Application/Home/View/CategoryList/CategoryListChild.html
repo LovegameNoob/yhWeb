@@ -1,17 +1,41 @@
 <div class="list_t">
             	<span class="fl list_or">
-                	<a href="#" class="now">默认</a>
-                    <a href="#">
+                    <eq name="select" value="">
+                	<a href="__URL__/goodSort" class="now">默认</a>
+                        <else/>
+                        <a href="__URL__/goodSort">默认</a>
+                    </eq>
+                     <eq name="select" value="sales">
+                    <a href="__URL__/goodSort/act/sales" class="now">
                         <span class="fl">销量</span>
                         <span class="i_up">销量从低到高显示</span>
                         <span class="i_down">销量从高到低显示</span>
                     </a>
-                    <a href="#">
+                         <else/>
+                         <a href="__URL__/goodSort/act/sales">
+                             <span class="fl">销量</span>
+                             <span class="i_up">销量从低到高显示</span>
+                             <span class="i_down">销量从高到低显示</span>
+                         </a>
+                     </eq>
+                     <eq name="select" value="price">
+                    <a href="__URL__/goodSort/act/price" class="now">
                         <span class="fl">价格</span>
                         <span class="i_up">价格从低到高显示</span>
                         <span class="i_down">价格从高到低显示</span>
                     </a>
-                    <a href="#">新品</a>
+                         <else/>
+                         <a href="__URL__/goodSort/act/price" >
+                             <span class="fl">价格</span>
+                             <span class="i_up">价格从低到高显示</span>
+                             <span class="i_down">价格从高到低显示</span>
+                         </a>
+                     </eq>
+                     <!--<eq name="select" value="new">-->
+                         <!--<a href="__URL__/goodSort/act/new" class="now">新品</a>-->
+                         <!--<else/>-->
+                         <!--<a href="__URL__/goodSort/act/new">新品</a>-->
+                     <!--</eq>-->
                 </span>
     <span class="fr" id="count">共发现{$Filtergoods|count}件</span>
 </div>

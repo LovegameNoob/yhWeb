@@ -39,7 +39,14 @@ class ProductController extends PublicController
             }
         }
         $goodsdetail = $goodsobj->getGoodsDetail($id);
+        if($collection=$goodsobj->table('collection')->where("goodsId=$id AND userId={$_SESSION['userId']}")->find())
+        {
+          $goodsdetail['class']='collect';
+        }
         $goodsLike=$goodsobj->field('id,goodsName,price,picName')->where("path='{$goodsdetail['goods']['path']}'")->order('sales desc')->limit(10)->select();
+        $goodsimg=$goodsobj->table('goods_img')->where("goodsId=$id")->find();
+        $goodsimg['picDetail']=explode(',',$goodsimg['picDetail']);
+        $this->assign('goodsimg',$goodsimg);
         $this->assign('goodsLike',$goodsLike);
         $this->assign('typerows', $typerows);
         $this->assign('goodsdetail', $goodsdetail);

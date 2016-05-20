@@ -3824,11 +3824,11 @@ ul.brand li .name span {
     height: 27px;
     line-height: 27px;
     overflow: hidden;
-    background: url(../Images/care.png) no-repeat left center;
+    background: url(../Images/heart.png) no-repeat 10px center;
     float: left;
     display: inline;
     margin-left: 50px;
-    padding-left: 22px;
+    padding-left: 32px;
 }
 
 .des_join {

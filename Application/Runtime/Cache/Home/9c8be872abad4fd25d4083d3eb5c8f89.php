@@ -322,18 +322,36 @@
         <div class="l_list categorylist">
             <div class="list_t">
             	<span class="fl list_or">
-                	<a href="#" class="now">默认</a>
-                    <a href="#">
+                    <?php if(($select) == ""): ?><a href="/yhWeb/Home/CategoryList/goodSort" class="now">默认</a>
+                        <?php else: ?>
+                        <a href="/yhWeb/Home/CategoryList/goodSort">默认</a><?php endif; ?>
+                     <?php if(($select) == "sales"): ?><a href="/yhWeb/Home/CategoryList/goodSort/act/sales" class="now">
                         <span class="fl">销量</span>
                         <span class="i_up">销量从低到高显示</span>
                         <span class="i_down">销量从高到低显示</span>
                     </a>
-                    <a href="#">
+                         <?php else: ?>
+                         <a href="/yhWeb/Home/CategoryList/goodSort/act/sales">
+                             <span class="fl">销量</span>
+                             <span class="i_up">销量从低到高显示</span>
+                             <span class="i_down">销量从高到低显示</span>
+                         </a><?php endif; ?>
+                     <?php if(($select) == "price"): ?><a href="/yhWeb/Home/CategoryList/goodSort/act/price" class="now">
                         <span class="fl">价格</span>
                         <span class="i_up">价格从低到高显示</span>
                         <span class="i_down">价格从高到低显示</span>
                     </a>
-                    <a href="#">新品</a>
+                         <?php else: ?>
+                         <a href="/yhWeb/Home/CategoryList/goodSort/act/price" >
+                             <span class="fl">价格</span>
+                             <span class="i_up">价格从低到高显示</span>
+                             <span class="i_down">价格从高到低显示</span>
+                         </a><?php endif; ?>
+                     <!--<?php if(($select) == "new"): ?>-->
+                         <!--<a href="/yhWeb/Home/CategoryList/goodSort/act/new" class="now">新品</a>-->
+                         <!--<?php else: ?>-->
+                         <!--<a href="/yhWeb/Home/CategoryList/goodSort/act/new">新品</a>-->
+                     <!--<?php endif; ?>-->
                 </span>
     <span class="fr" id="count">共发现<?php echo (count($Filtergoods)); ?>件</span>
 </div>
@@ -488,7 +506,7 @@
     </div>
     <div class="btmbg">
         <div class="btm">
-            备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br/>
+            备案/许可证编号：豫ICP备12009302号-1-www.dingguagua.com Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br/>
             <img src="/yhWeb/Public/Home/Images/b_1.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_2.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_3.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_4.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_5.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_6.gif" width="98" height="33"/>
         </div>
     </div>

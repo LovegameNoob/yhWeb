@@ -49,9 +49,15 @@ class GoodsModel extends Model
         return $arr;
     }
 
-    public function getGoods($typeid)
+    public function getGoods($typeid,$condition=null)
     {
-        $arr = $this->field('id,goodsName,price,priceLower,picName')->where("path LIKE '%,$typeid'OR typeId=$typeid AND state=2")->select();
+        if(empty($condition)){
+            $arr = $this->field('id,goodsName,price,priceLower,picName')->where("path LIKE '%,$typeid'OR typeId=$typeid AND state=2")->select();
+        }
+        else{
+            $arr = $this->field('id,goodsName,price,priceLower,picName')->where("path LIKE '%,$typeid'OR typeId=$typeid AND state=2")->order("$condition desc")->select();
+        }
+
         return $arr;
     }
 
@@ -86,8 +92,15 @@ class GoodsModel extends Model
         foreach ($goods as $key => $val) {
             $res = $this->table('goods_img')->where("goodsId={$val['id']}")->find();
             if ($res) {
-                $goods[$key]['picPure'] = $res['picPure'];
-                $arr[] = $goods[$key];
+                if( empty($res['picPure']))
+                {
+                    $brr[] = $val;
+                }
+                else
+                {
+                    $goods[$key]['picPure'] = $res['picPure'];
+                    $arr[] = $goods[$key];
+                }
             } else {
                 $brr[] = $val;
             }

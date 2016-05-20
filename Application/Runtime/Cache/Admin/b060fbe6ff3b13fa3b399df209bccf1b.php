@@ -1,5 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); ?>
-<html>
+<?php if (!defined('THINK_PATH')) exit();?><html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>主要内容区main</title>

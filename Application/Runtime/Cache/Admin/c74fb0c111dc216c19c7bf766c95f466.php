@@ -1,5 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); ?>
-<html>
+<?php if (!defined('THINK_PATH')) exit();?><html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>添加商品</title>
@@ -205,13 +204,7 @@
                         <td align="right" valign="middle" class="borderright borderbottom bggray">类别：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
                             <select name="typeId" id="level">
-                                <?php if (is_array($type)): $i = 0;
-                                    $__LIST__ = $type;
-                                    if (count($__LIST__) == 0) : echo "";
-                                    else: foreach ($__LIST__ as $key => $type): $mod = ($i % 2);
-                                        ++$i; ?>
-                                        <option value='<?php echo($type["id"]); ?>'><?php echo($type["name"]); ?></option><?php endforeach; endif;
-                                else: echo "";endif; ?>
+                                <?php if(is_array($type)): $i = 0; $__LIST__ = $type;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$type): $mod = ($i % 2 );++$i;?><option value='<?php echo ($type["id"]); ?>'><?php echo ($type["name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
                             </select>
                         </td>
                     </tr>

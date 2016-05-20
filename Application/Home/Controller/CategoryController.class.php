@@ -16,13 +16,19 @@ class CategoryController extends PublicController
         $typeobj = D('Type');
         $arr = $typeobj->type($id);
         $goodsobj = D('Goods');
+        $poster=M('category');
+        $posterarr=$poster->where("typeId=$id")->find();
+        $banner=M('banner');
+        $bannerarr=$banner->where("typeId=$id")->find();
         $typerows = $typeobj->indexType();
         $goods = $goodsobj->showGoods($arr);
         $hotred = $goodsobj->hotGoods($id);
-        $this->assign('goods', $goods);
+        $this->assign('categoods', $goods);
         $this->assign('hotred', $hotred);
         $this->assign('type', $arr);
         $this->assign('typerows', $typerows);
+        $this->assign('poster',$posterarr);
+        $this->assign('banner', $bannerarr);
         $this->display('Category');
     }
 }

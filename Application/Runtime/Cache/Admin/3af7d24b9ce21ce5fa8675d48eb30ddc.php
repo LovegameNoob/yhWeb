@@ -1,5 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); ?>
-<html>
+<?php if (!defined('THINK_PATH')) exit();?><html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>主要内容区main</title>
@@ -203,7 +202,7 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">父类名:</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <?php echo($ptype["name"]); ?>
+                            <?php echo ($ptype["name"]); ?>
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
@@ -215,8 +214,8 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">父ID：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <?php echo($ptype["id"]); ?>
-                            <input type="hidden" name="pid" value="<?php echo($ptype["id"]); ?>">
+                            <?php echo ($ptype["id"]); ?>
+                            <input type="hidden" name="pid" value="<?php echo ($ptype["id"]); ?>">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">

@@ -35,9 +35,9 @@
         <div class="cate_nav">
             <volist name="type" id="type">
                 <dl>
-                    <dt><a href="#">{$type[0].name}</a></dt>
+                    <dt><a href="__MODULE__/CategoryList/index/typeid/{$type[0].id}">{$type[0].name}</a></dt>
                     <volist name="type[1]" id="typethree">
-                        <dd><a href="#">{$typethree.name}</a></dd>
+                        <dd><a href="__MODULE__/CategoryList/index/typeid/{$typethree.id}">{$typethree.name}</a></dd>
                     </volist>
                 </dl>
             </volist>
@@ -46,9 +46,9 @@
         <div class="nban">
             <div class="top_slide_wrap">
                 <ul class="slide_box bxslider">
-                    <li><img src="__PUBLIC__/Home/Images/nban.jpg" width="977" height="401"/></li>
-                    <li><img src="__PUBLIC__/Home/Images/nban.jpg" width="977" height="401"/></li>
-                    <li><img src="__PUBLIC__/Home/Images/nban.jpg" width="977" height="401"/></li>
+                    <li><img src="__PUBLIC__/Home/Images/{$banner.banner1}" width="977" height="401"/></li>
+                    <li><img src="__PUBLIC__/Home/Images/{$banner.banner2}" width="977" height="401"/></li>
+                    <li><img src="__PUBLIC__/Home/Images/{$banner.banner3}" width="977" height="401"/></li>
                 </ul>
                 <div class="op_btns clearfix">
                     <a href="#" class="op_btn op_prev"><span></span></a>
@@ -69,10 +69,12 @@
     </div>
     <div class="content mar_15">
         <ul class="cate">
-            <li><a href="../CategoryList/CategoryList.html"><img src="__PUBLIC__/Home/Images/ca_1.jpg" width="295" height="220"/></a></li>
-            <li><a href="../CategoryList/CategoryList.html"><img src="__PUBLIC__/Home/Images/ca_2.jpg" width="295" height="220"/></a></li>
-            <li><a href="../CategoryList/CategoryList.html"><img src="__PUBLIC__/Home/Images/ca_3.jpg" width="295" height="220"/></a></li>
-            <li><a href="../CategoryList/CategoryList.html"><img src="__PUBLIC__/Home/Images/ca_4.jpg" width="295" height="220"/></a></li>
+            <notempty name="poster">
+            <li><a href="../CategoryList/CategoryList.html"><img src="__PUBLIC__/Home/Images/{$poster['poster1']}" width="229" /></a></li>
+            <li><a href="../CategoryList/CategoryList.html"><img src="__PUBLIC__/Home/Images/{$poster['poster2']}" width="229" /></a></li>
+            <li><a href="../CategoryList/CategoryList.html"><img src="__PUBLIC__/Home/Images/{$poster['poster3']}" width="229" /></a></li>
+            <li><a href="../CategoryList/CategoryList.html"><img src="__PUBLIC__/Home/Images/{$poster['poster4']}" width="229" /></a></li>
+            </notempty>
         </ul>
     </div>
     <!--Begin 热卖爆款商品 Begin-->
@@ -90,10 +92,10 @@
                                 <li class="featureBox">
                                     <div class="box">
                                         <div class="imgbg">
-                                            <a href="#"><img src="__PUBLIC__/Uploads/{$hotred.picName}" width="160" height="136"/></a>
+                                            <a href="__MODULE__/Product/index/id/{$hotred.id}"><img src="__PUBLIC__/Uploads/{$hotred.picName}" width="160" height="136"/></a>
                                         </div>
                                         <div class="name">
-                                            <a href="#">
+                                            <a href="__MODULE__/Product/index/id/{$hotred.id}">
                                                 <h2>{$hotred.name}</h2>
                                                 {$hotred.descr}
                                             </a>
@@ -114,7 +116,8 @@
     </div>
     <!--End 热卖爆款商品 End-->
     <!--Begin 奶粉辅食 Begin-->
-    <volist name="goods" id="goods">
+    <volist name="categoods" id="goods">
+        <notempty name="goods[3]">
         <div class="i_t mar_10">
             <span class="fl t_color">{$goods[0]}</span>
         <span class="i_mores fr">
@@ -139,8 +142,8 @@
                 <ul>
                     <volist name="goods[3]" id="showgoods">
                         <li>
-                            <div class="img"><a href="#"><img src="__PUBLIC__/Uploads/{$showgoods.picName}" width="185" height="155"/></a></div>
-                            <div class="name"><a href="#">{$showgoods.goodsName}</a></div>
+                            <div class="img"><a href="__MODULE__/Product/index/id/{$showgoods.id}"><img src="__PUBLIC__/Uploads/{$showgoods.picName}" width="185" height="155"/></a></div>
+                            <div class="name"><a href="__MODULE__/Product/index/id/{$showgoods.id}">{$showgoods.goodsName}</a></div>
                             <div class="price">
                                 <font>￥<span>{$showgoods.price}</span></font> &nbsp; 20R
                             </div>
@@ -149,6 +152,7 @@
                 </ul>
             </div>
         </div>
+            </notempty>
     </volist>
     <!--End 奶粉辅食 End-->
     <!--Begin 尿裤湿巾 Begin-->
@@ -235,7 +239,7 @@
     </div>
     <div class="btmbg">
         <div class="btm">
-            备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br/>
+            备案/许可证编号：豫ICP备12009302号-1-www.dingguagua.com Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br/>
             <img src="__PUBLIC__/Home/Images/b_1.gif" width="98" height="33"/><img src="__PUBLIC__/Home/Images/b_2.gif" width="98" height="33"/><img src="__PUBLIC__/Home/Images/b_3.gif" width="98" height="33"/><img src="__PUBLIC__/Home/Images/b_4.gif" width="98" height="33"/><img src="__PUBLIC__/Home/Images/b_5.gif" width="98" height="33"/><img src="__PUBLIC__/Home/Images/b_6.gif" width="98" height="33"/>
         </div>
     </div>

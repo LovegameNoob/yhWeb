@@ -72,10 +72,10 @@ class GoodsController extends Controller
         $this->display();
     }
 
-    public function ajaxgetProperty($typeId)
+    public function ajaxgetProperty($typeId,$id)
     {
         $D = D('Property');
-        $res = $D->ajaxGetProperty($typeId);
+        $res = $D->ajaxGetProperty($typeId,$id);
         $this->ajaxReturn($res);
     }
 
@@ -116,8 +116,29 @@ class GoodsController extends Controller
     {
         $m=M('goods_img');
         $res=$m->select();
-        $this->assign('goodsimage',$res);
-        $this->display();
+        foreach($res as $key=>$val)
+        {
+            if(!empty($val['picName']))
+            {
+                $picname=explode(',',$val['picName']);
+                $data[$key]['picName']=$picname;
+            }
+            if(!empty($val['picDetail']))
+            {
+                $picdetail=explode(',',$val['picDetail']);
+                $data[$key]['picDetail']=$picdetail;
+            }
+           if(!empty($val['picPure']))
+           {
+               $picPure=explode(',',$val['picPure']);
+               $data[$key]['picPure']=$picPure;
+           }
+            $data[$key]['id']=$val['id'];
+            $data[$key]['goodsId']=$val['goodsId'];
+            $data[$key]['typeId']=$val['typeId'];
+        }
+        $this->assign('goodsimage',$data);
+        $this->display('goodsImage');
     }
 
     public function goodsProperty()
@@ -165,7 +186,7 @@ class GoodsController extends Controller
             }
         }
         $data['property'] = implode(",", $data['property']);
-        if (!empty($_POST['picName'])) {
+        if (!empty($_FILES['picName']['name'])) {
             $upload = new \Think\Upload();
             $upload->maxSize = 3145728;
             $upload->exts = array('jpg', 'gif', 'png', 'jpeg');
@@ -180,7 +201,7 @@ class GoodsController extends Controller
         }
         $m = M('goods');
         if ($m->where("id={$data['id']}")->save($data)) {
-            $this->success('修改成功', 'goodsList');
+            $this->goodsList();
         } else {
             $this->error('修改失败');
         }
@@ -195,6 +216,64 @@ class GoodsController extends Controller
             $this->goodsList();
         } else {
             $this->error('修改失败');
+        }
+
+    }
+    public function addGoodsImage()
+    {
+        $d = D('Type');
+        $type = $d->typeAll();
+        $this->assign('type', $type);
+        $this->display();
+
+    }
+    public function goodsImageAct()
+    {
+        $upload = new \Think\Upload();
+        $upload->maxSize = 3145728;
+        $upload->exts = array('jpg', 'gif', 'png', 'jpeg');
+        $upload->rootPath = './Public/Uploads/';
+        $upload->autoSub = false;
+        $info = $upload->upload();
+        if (!$info) {
+            $this->error($upload->getError());
+        } else {
+            foreach($info as $key=>$val)
+            {
+                switch($val['key'])
+                {
+                    case 'picName':
+                        $picname[]=$val['savename'];
+                        break;
+                    case 'picDetail':
+                        $picDetail[]=$val['savename'];
+                        break;
+                    case 'picPure':
+                        $picPure[]=$val['savename'];
+                        break;
+                }
+            }
+            //$_POST['picName'] = $info['picName']['savename'];
+        }
+        if(!empty($picDetail))
+        {
+            $_POST['picDetail']=implode(',',$picDetail);
+        }
+       if(!empty($picname))
+       {
+           $_POST['picName']=implode(',',$picname);
+       }
+        if(!empty($picPure))
+        {
+            $_POST['picPure']=implode(',',$picPure);
+        }
+        $m=M('goods_img');
+        if($m->add($_POST))
+        {
+            $this->goodsImage();
+        }
+        else{
+            $this->error('添加失败');
         }
 
     }

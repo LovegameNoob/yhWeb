@@ -148,7 +148,7 @@
                             <input name="" type="button" value="查询" class="text-but">
                         </form>
                     </td>
-                    <td width="10%" align="center" valign="middle" style="text-align:right; width:150px;"><a href="" target="mainFrame" onFocus="this.blur()" class="add">新增图片</a></td>
+                    <td width="10%" align="center" valign="middle" style="text-align:right; width:150px;"><a href="addGoodsImage" target="mainFrame" onFocus="this.blur()" class="add">新增图片</a></td>
                 </tr>
             </table>
         </td>
@@ -170,13 +170,15 @@
                         <td align='center' valign='middle' class='borderright borderbottom'><?php echo ($images['id']); ?></td>
                         <td align='center' valign='middle' class='borderright borderbottom'><?php echo ($images['goodsId']); ?></td>
                         <td align='center' valign='middle' class='borderright borderbottom'><?php echo ($images['typeId']); ?></td>
-                        <td align='center' valign='middle' class='borderright borderbottom'><img src="/yhWeb/Public/Uploads/<?php echo ($images['picName']); ?>" alt="" width="100" height="100"></td>
                         <td align='center' valign='middle' class='borderright borderbottom'>
-                            <?php if((count($images["picDetail"])) == "1"): ?><img src="/yhWeb/Public/Uploads/<?php echo ($images["picDetail"]); ?>" alt="" width="100" height="100">
-                                <?php else: ?>
-                                <?php if(is_array($images["picDetail"])): $i = 0; $__LIST__ = $images["picDetail"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$detail): $mod = ($i % 2 );++$i;?><img src="/yhWeb/Public/Uploads/<?php echo ($detail); ?>" alt="" width="100" height="100"><?php endforeach; endif; else: echo "" ;endif; endif; ?>
+                            <?php if(!empty($images["picName"])): if(is_array($images["picName"])): $i = 0; $__LIST__ = $images["picName"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$picName): $mod = ($i % 2 );++$i;?><img src="/yhWeb/Public/Uploads/<?php echo ($picName); ?>" alt="" width="100" height="100"><?php endforeach; endif; else: echo "" ;endif; endif; ?>
                         </td>
-                        <td align='center' valign='middle' class='borderright borderbottom'><img src="/yhWeb/Public/Uploads/<?php echo ($images['picPure']); ?>" alt="" width="100" height="100"></td>
+                        <td align='center' valign='middle' class='borderright borderbottom'>
+                            <?php if(!empty($images["picDetail"])): if(is_array($images["picDetail"])): $i = 0; $__LIST__ = $images["picDetail"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$detail): $mod = ($i % 2 );++$i;?><img src="/yhWeb/Public/Uploads/<?php echo ($detail); ?>" alt="" width="100" height="100"><?php endforeach; endif; else: echo "" ;endif; endif; ?>
+                        </td>
+                        <td align='center' valign='middle' class='borderright borderbottom'>
+                                <?php if(is_array($images["picPure"])): $i = 0; $__LIST__ = $images["picPure"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$picPure): $mod = ($i % 2 );++$i;?><img src="/yhWeb/Public/Uploads/<?php echo ($picPure); ?>" alt="" width="100" height="100"><?php endforeach; endif; else: echo "" ;endif; ?>
+                        </td>
                         <td align='center' valign='middle' class='borderright borderbottom'>
                             <?php if(empty($images["picTurn"])): else: ?><img src="/yhWeb/Public/Uploads/<?php echo ($images['picTurn']); ?>" alt="" width="100" height="100"><?php endif; ?></td>
                         <td align='center' valign='middle'>

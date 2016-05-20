@@ -24,12 +24,35 @@ class MemberController extends Controller
         $m = M('orders');
         $orders = $m->where("userId={$_SESSION['userId']}")->select();
         $this->assign('orders', $orders);
-        $this->display();
+        $this->display('Member_Order');
     }
 
     public function Member_Member()
     {
         $this->display();
     }
+    public function Member_Collect()
+    {
+        $m=M('collection');
+        $res=$m->where("userId={$_SESSION['userId']}")->select();
+        $this->assign('collect',$res);
+        $this->display();
+    }
+    public function Member_Safe()
+    {
+        $this->display();
+    }
+    public function updatePhone()
+    {
 
+    }
+    public function cancel($id)
+    {
+        $m = M('orders');
+        if($m->delete($id))
+        {
+            $this->Member_Order();
+        }
+
+    }
 }

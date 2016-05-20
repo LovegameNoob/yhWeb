@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2016-05-18 16:01:59
+-- Generation Time: 2016-05-20 16:02:27
 -- 服务器版本： 5.6.27
 -- PHP Version: 5.5.30
 
@@ -49,6 +49,28 @@ INSERT INTO `admin` (`id`, `adminName`, `adminPass`, `adminPower`) VALUES
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `banner`
+--
+
+CREATE TABLE `banner` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `typeId` int(10) UNSIGNED NOT NULL,
+  `banner1` varchar(30) NOT NULL,
+  `banner2` varchar(30) NOT NULL,
+  `banner3` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `banner`
+--
+
+INSERT INTO `banner` (`id`, `typeId`, `banner1`, `banner2`, `banner3`) VALUES
+(1, 23, 'fruit1.jpg', 'fruit1.jpg', 'fruit1.jpg'),
+(2, 1, 'foodbanner1.jpg', 'foodbanner1.jpg', 'foodbanner1.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `cart`
 --
 
@@ -62,6 +84,28 @@ CREATE TABLE `cart` (
   `price` double(6,2) UNSIGNED NOT NULL COMMENT '单价',
   `number` int(10) UNSIGNED NOT NULL COMMENT '数量'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='购物车表';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `category`
+--
+
+CREATE TABLE `category` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `typeId` int(10) UNSIGNED NOT NULL,
+  `poster1` varchar(30) NOT NULL,
+  `poster2` varchar(30) NOT NULL,
+  `poster3` varchar(30) NOT NULL,
+  `poster4` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `category`
+--
+
+INSERT INTO `category` (`id`, `typeId`, `poster1`, `poster2`, `poster3`, `poster4`) VALUES
+(1, 1, 'food1.jpeg', 'food2.jpeg', 'food3.jpeg', 'food4.jpg');
 
 -- --------------------------------------------------------
 
@@ -97,6 +141,7 @@ CREATE TABLE `goods` (
   `path` varchar(50) NOT NULL COMMENT '路径',
   `goodsName` varchar(50) NOT NULL,
   `brands` varchar(20) DEFAULT NULL,
+  `brandsImg` varchar(30) NOT NULL,
   `descr` text,
   `property` varchar(255) DEFAULT NULL COMMENT '商品属性',
   `price` double(6,2) UNSIGNED NOT NULL,
@@ -118,21 +163,21 @@ CREATE TABLE `goods` (
 -- 转存表中的数据 `goods`
 --
 
-INSERT INTO `goods` (`id`, `typeId`, `path`, `goodsName`, `brands`, `descr`, `property`, `price`, `priceLower`, `picName`, `state`, `stock`, `sales`, `click`, `addTime`, `isLimitime`, `isDiscount`, `isHot`, `isImport`, `recommend`) VALUES
-(1, 38, '25,33', '苹果iPhone 6S ', 'iPhone(苹果)', '苹果(IOS)6s iPhone 6S 4.7英寸三网通4G 玫瑰金色16GB官方标配', '1:0,2:1,3:2,4:1', 4888.00, NULL, '217_G_1454013403103.jpg', 2, 0, 0, 1, 1461761609, 0, 0, 1, 0, 0),
-(2, 8, '1,2', '达利园瑞士卷蛋卷包装', '达利园', '达利园瑞士卷香蕉味3斤提手装', '', 10.00, NULL, '254_P_1454022571771.png', 2, 998, 300, 1, 1461808987, 1, 0, 0, 0, 0),
-(3, 43, '1,42', '德亚全脂纯牛奶', '德亚', '德亚全脂纯牛奶200ml*48盒', '', 189.00, 0.00, '5721de81c9763.jpg', 3, 322, 200, 0, 1461837441, 0, 1, 1, 0, 0),
-(4, 48, '1,21', 'Lay''s乐事薯片', '乐事', 'Lay''s乐事 孜然爆羊排味 40g', '', 3.00, 0.00, '5721f8f1c517e.jpg', 2, 323, 100, 1, 1461844209, 0, 1, 0, 0, 0),
-(5, 51, '26,49', '完达山金装育儿健奶粉', '完达山', '完达山 金装育儿健奶粉 2段婴幼儿配方奶粉 400G', '', 25.00, 0.00, '5721fb61c92b1.jpg', 2, 36, 0, 3, 1461844833, 0, 1, 1, 0, 0),
-(6, 3, '1,2', '奥利奥盒装夹心饼干包装', '奥利奥', '奥利奥 盒装饼干256g', '5:1,6:0', 16.00, 0.00, '5721fe4c06442.jpg', 2, 6666, 232, 1, 1461845580, 1, 0, 0, 0, 0),
-(7, 78, '28,77', '维达3层抽取式纸面巾', '维达', '维达倍韧系列3层抽取式纸面巾', '', 5.80, 0.00, '57285a5c1e7bb.jpg', 2, 2323, 0, 1, 1462262364, 0, 0, 0, 0, 0),
-(8, 79, '28,74', '立白超洁清新无磷洗衣粉', '立白', '立白 超洁清新无磷洗衣粉', '', 9.80, 0.00, '57285b7baf1fc.jpg', 2, 6060, 0, 0, 1462262651, 0, 0, 0, 0, 0),
-(9, 80, '25,35', '华硕 E202笔记本', '华硕(ASUS)', '华硕 E202 11.6英寸(赛扬N3050双核/4G/500G/集显)X205TA3735白色官方标配', '', 2380.00, 0.00, '57285cb709d97.jpg', 1, 250, 0, 0, 1462262967, 0, 0, 0, 0, 0),
-(10, 82, '23,81', '新鲜猪肉猪排骨', '双汇', '新鲜猪肉 猪排骨 500g', '', 18.00, 0.00, '57285dbb38351.jpg', 1, 500, 0, 0, 1462263227, 0, 0, 0, 0, 0),
-(11, 84, '23,83', '海南香蕉500g', '', '新鲜水果 香蕉 海南香蕉 500g', '', 4.50, 3.80, '57285e10c1637.jpg', 1, 600, 0, 0, 1462263312, 0, 0, 0, 0, 0),
-(12, 70, '24,65', '欧莱雅致透净颜洁面乳', '欧莱雅(OREAL)', 'L’OREAL 欧莱雅 致透净颜洁面乳 125mL', '', 110.00, 95.00, '57285ef05cfec.jpg', 1, 605, 0, 0, 1462263536, 0, 0, 0, 0, 0),
-(13, 86, '24,85', '海飞丝去屑洗发露', '海飞丝', '海飞丝 去屑洗发露 清爽去油型 200ml', '', 26.00, 23.80, '5728601014d74.jpg', 1, 1230, 0, 0, 1462263824, 0, 0, 0, 0, 0),
-(21, 89, '1,88', '福临门 苏北米 清香米 中粮出品 大米 5kg', '福临门', '福临门 苏北米 清香米 中粮出品 大米 5kg', NULL, 29.90, 0.00, '57359738d729a.jpg', 1, 123, 0, 0, 1463129913, 1, 0, 0, 0, 0);
+INSERT INTO `goods` (`id`, `typeId`, `path`, `goodsName`, `brands`, `brandsImg`, `descr`, `property`, `price`, `priceLower`, `picName`, `state`, `stock`, `sales`, `click`, `addTime`, `isLimitime`, `isDiscount`, `isHot`, `isImport`, `recommend`) VALUES
+(1, 38, '25,33', '苹果iPhone 6S ', 'iPhone(苹果)', 'applelogo.png', '苹果(IOS)6s iPhone 6S 4.7英寸三网通4G 玫瑰金色16GB官方标配', '1:0,2:1,3:2,4:1', 4888.00, NULL, '217_G_1454013403103.jpg', 2, 0, 0, 23, 1461761609, 0, 0, 1, 0, 0),
+(2, 8, '1,2', '达利园瑞士卷蛋卷包装', '达利园', 'daliyuan.png', '达利园瑞士卷香蕉味3斤提手装', '', 10.00, NULL, '254_P_1454022571771.png', 2, 998, 300, 27, 1461808987, 1, 0, 0, 0, 0),
+(3, 43, '1,42', '德亚全脂纯牛奶', '德亚', '', '德亚全脂纯牛奶200ml*48盒', '', 189.00, 0.00, '5721de81c9763.jpg', 3, 322, 200, 0, 1461837441, 0, 1, 1, 0, 0),
+(4, 48, '1,21', 'Lay''s乐事薯片', '乐事', 'leshilogo.jpg', 'Lay''s乐事 孜然爆羊排味 40g', '', 3.00, 0.00, '5721f8f1c517e.jpg', 2, 323, 100, 3, 1461844209, 0, 1, 0, 0, 0),
+(5, 51, '26,49', '完达山金装育儿健奶粉', '完达山', '', '完达山 金装育儿健奶粉 2段婴幼儿配方奶粉 400G', '', 25.00, 0.00, '5721fb61c92b1.jpg', 2, 36, 0, 3, 1461844833, 0, 1, 1, 0, 0),
+(6, 5, '1,2', '奥利奥威化饼干巧克棒', '奥利奥', 'oreologo.png', '奥利奥威化饼干巧克棒原味巧克力味64g', '5:3,6:0', 16.00, 0.00, '573d8bd49d7d4.jpg', 2, 6666, 232, 19, 1461845580, 1, 0, 0, 0, 0),
+(7, 78, '28,77', '维达3层抽取式纸面巾', '维达', '', '维达倍韧系列3层抽取式纸面巾', '', 5.80, 0.00, '57285a5c1e7bb.jpg', 2, 2323, 0, 1, 1462262364, 0, 0, 0, 0, 0),
+(8, 79, '28,74', '立白超洁清新无磷洗衣粉', '立白', '', '立白 超洁清新无磷洗衣粉', '', 9.80, 0.00, '57285b7baf1fc.jpg', 2, 6060, 0, 0, 1462262651, 0, 0, 0, 0, 0),
+(9, 80, '25,35', '华硕 E202笔记本', '华硕(ASUS)', '', '华硕 E202 11.6英寸(赛扬N3050双核/4G/500G/集显)X205TA3735白色官方标配', '', 2380.00, 0.00, '57285cb709d97.jpg', 2, 250, 0, 0, 1462262967, 0, 0, 0, 0, 0),
+(10, 82, '23,81', '新鲜猪肉猪排骨', '双汇', '', '新鲜猪肉 猪排骨 500g', '', 18.00, 0.00, '57285dbb38351.jpg', 2, 500, 0, 0, 1462263227, 0, 0, 0, 0, 0),
+(11, 84, '23,83', '海南香蕉500g', '', '', '新鲜水果 香蕉 海南香蕉 500g', '', 4.50, 3.80, '57285e10c1637.jpg', 1, 600, 0, 0, 1462263312, 0, 0, 0, 0, 0),
+(12, 70, '24,65', '欧莱雅致透净颜洁面乳', '欧莱雅(OREAL)', '', 'L’OREAL 欧莱雅 致透净颜洁面乳 125mL', '', 110.00, 95.00, '57285ef05cfec.jpg', 1, 605, 0, 0, 1462263536, 0, 0, 0, 0, 0),
+(13, 86, '24,85', '海飞丝去屑洗发露', '海飞丝', '', '海飞丝 去屑洗发露 清爽去油型 200ml', '', 26.00, 23.80, '5728601014d74.jpg', 2, 1230, 0, 0, 1462263824, 0, 0, 0, 0, 0),
+(21, 89, '1,88', '福临门 苏北米 清香米 中粮出品 大米 5kg', '福临门', '', '福临门 苏北米 清香米 中粮出品 大米 5kg', NULL, 29.90, 0.00, '57359738d729a.jpg', 3, 123, 0, 0, 1463129913, 1, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -155,7 +200,8 @@ CREATE TABLE `goods_img` (
 --
 
 INSERT INTO `goods_img` (`id`, `goodsId`, `typeId`, `picName`, `picDetail`, `picPure`, `picTurn`) VALUES
-(1, 21, 89, '57359738d729a.jpg', '57359738ef940.jpg', '573597390d814.jpg', '');
+(1, 21, 89, '57359738d729a.jpg', '57359738ef940.jpg', '573597390d814.jpg', ''),
+(2, 6, 5, '573dc049dc03b.jpg', '573dc049e1244.jpg,573dc049ea6b6.jpg,573dc049def1b.jpg,573dc049e7fa6.jpg', '', '');
 
 -- --------------------------------------------------------
 
@@ -192,9 +238,8 @@ INSERT INTO `orders` (`id`, `goodsId`, `userId`, `goodsName`, `linkMan`, `addres
 (19, 49, 0, '', '贾楠', '郑州金水', '450000', '15037140546', 20140717, 1, 99.00, 3),
 (20, 46, 0, '', '赵三1', '郑州市国基路102', '450000', '13245454235', 20140910, 1, 1368.00, 3),
 (22, 1, 7, '苹果iPhone 6S ', '2163880', '河南省漯河市源汇区', '462000', '15639505278', 1463043459, 1, 4888.00, 1),
-(12, 12, 7, '大家啊四点接啊', '进阿斯顿', '萨达省', '462000', '13569695381', 123564988, 1, 50.00, 1),
 (13, 23, 7, '加大', '爱的就死机', '爱上的季节', '462000', '13569695381', 1236547800, 1, 66.00, 1),
-(24, 2, 7, '奥利奥', '小明', '大祭司的就爱就爱死机的', '462000', '13653953911', 132645688, 1, 99.00, 1);
+(25, 1, 7, '苹果iPhone 6S ', '2163880', '河南省漯河市源汇区', '462000', '15639505278', 1463706390, 0, 19552.00, 1);
 
 --
 -- 触发器 `orders`
@@ -277,7 +322,7 @@ CREATE TABLE `type` (
 --
 
 INSERT INTO `type` (`id`, `name`, `pid`, `path`) VALUES
-(1, '食品、饮料、酒类', 0, NULL),
+(1, '食品、饮料、酒类', 0, '0'),
 (2, '饼干/糕点', 1, '1,'),
 (3, '饼干', 2, '1,2'),
 (4, '曲奇', 2, '1,2'),
@@ -299,16 +344,16 @@ INSERT INTO `type` (`id`, `name`, `pid`, `path`) VALUES
 (20, '果冻', 15, '1,15'),
 (21, '零食/坚果/蜜饯', 1, '1,'),
 (22, '炒货', 21, '1,21'),
-(23, '生鲜、蔬菜、水果', 0, NULL),
-(24, '个护美妆、清洁用品', 0, NULL),
-(25, '手机、数码、电脑办公', 0, NULL),
-(26, '母婴、童装、玩具乐器', 0, NULL),
-(27, '男装、女装、配饰', 0, NULL),
-(28, '家居、厨卫、生活百货', 0, NULL),
-(29, '鞋靴、箱包、户外运动', 0, NULL),
-(30, '家用电器、汽车用品', 0, NULL),
-(31, '营养健康、成人用品', 0, NULL),
-(32, '旅游、票务、图书音像', 0, NULL),
+(23, '生鲜、蔬菜、水果', 0, '0'),
+(24, '个护美妆、清洁用品', 0, '0'),
+(25, '手机、数码、电脑办公', 0, '0'),
+(26, '母婴、童装、玩具乐器', 0, '0'),
+(27, '男装、女装、配饰', 0, '0'),
+(28, '家居、厨卫、生活百货', 0, '0'),
+(29, '鞋靴、箱包、户外运动', 0, '0'),
+(30, '家用电器、汽车用品', 0, '0'),
+(31, '营养健康、成人用品', 0, '0'),
+(32, '旅游、票务、图书音像', 0, '0'),
 (33, '手机通讯/配件', 25, '25,'),
 (34, '数码配件', 25, '25,'),
 (35, '电脑整机', 25, '25,'),
@@ -413,9 +458,21 @@ ALTER TABLE `admin`
   ADD UNIQUE KEY `adminName` (`adminName`);
 
 --
+-- Indexes for table `banner`
+--
+ALTER TABLE `banner`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `cart`
 --
 ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -481,10 +538,20 @@ ALTER TABLE `user`
 ALTER TABLE `admin`
   MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
+-- 使用表AUTO_INCREMENT `banner`
+--
+ALTER TABLE `banner`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- 使用表AUTO_INCREMENT `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+--
+-- 使用表AUTO_INCREMENT `category`
+--
+ALTER TABLE `category`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- 使用表AUTO_INCREMENT `collection`
 --
@@ -499,12 +566,12 @@ ALTER TABLE `goods`
 -- 使用表AUTO_INCREMENT `goods_img`
 --
 ALTER TABLE `goods_img`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- 使用表AUTO_INCREMENT `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- 使用表AUTO_INCREMENT `property`
 --

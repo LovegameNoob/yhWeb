@@ -1,7 +1,7 @@
 <?php if (!defined('THINK_PATH')) exit();?><html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>添加商品</title>
+    <title>更新商品</title>
     <link href="/yhWeb/Public/Admin/Css/css.css" type="text/css" rel="stylesheet"/>
     <link href="/yhWeb/Public/Admin/Css/main.css" type="text/css" rel="stylesheet"/>
     <script src="/yhWeb/Public/jquery.js"></script>
@@ -301,7 +301,7 @@
     $(function () {
         $("#level option").each(function () {
             if ($(this).attr('selected')) {
-                $.post('/yhWeb/Admin/Goods/ajaxgetProperty', {typeId: $(this).val()}, function (data) {
+                $.post('/yhWeb/Admin/Goods/ajaxgetProperty', {typeId: $(this).val(),id:$('input:hidden').val()}, function (data) {
                     $.each(data, function () {
                         $("#property").append(this);
                     })
@@ -312,7 +312,7 @@
         })
         $("#level").change(function () {
             $("#property").html('');
-            $.post('/yhWeb/Admin/Goods/ajaxgetProperty', {typeId: $(this).val()}, function (data) {
+            $.post('/yhWeb/Admin/Goods/ajaxgetProperty', {typeId: $(this).val(),id:$('input:hidden').val()}, function (data) {
                 $.each(data, function () {
                     $("#property").append(this);
                 })
