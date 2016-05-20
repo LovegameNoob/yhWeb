@@ -245,24 +245,6 @@
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                        <td align="right" valign="middle" class="borderright borderbottom bggray">详情图：</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="file" name="picDetail" value="" class="text-word">
-                        </td>
-                    </tr>
-                    <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                        <td align="right" valign="middle" class="borderright borderbottom bggray">海报图：</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="file" name="picPure" value="" class="text-word">
-                        </td>
-                    </tr>
-                    <!--<tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">-->
-                    <!--<td align="right" valign="middle" class="borderright borderbottom bggray">轮播图：</td>-->
-                    <!--<td align="left" valign="middle" class="borderright borderbottom main-for">-->
-                    <!--<input type="file" name="picTure" value="" class="text-word">-->
-                    <!--</td>-->
-                    <!--</tr>-->
-                    <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">状态：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
                             <label for="new">新商品</label>

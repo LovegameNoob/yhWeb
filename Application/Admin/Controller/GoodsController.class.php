@@ -15,7 +15,7 @@ class GoodsController extends Controller
     {
         $upload = new \Think\Upload();
         $upload->maxSize = 3145728;
-        $upload->exts = array('jpg', 'gif', 'png', 'jpeg', '');
+        $upload->exts = array('jpg', 'gif', 'png', 'jpeg');
         $upload->rootPath = './Public/Uploads/';
         $upload->autoSub = false;
         $info = $upload->upload();
@@ -23,26 +23,16 @@ class GoodsController extends Controller
             $this->error($upload->getError());
         } else {
             $_POST['picName'] = $info['picName']['savename'];
-            $data['picName'] = $info['picName']['savename'];
-            $data['picDetail'] = $info['picDetail']['savename'];
-            $data['picPure'] = $info['picPure']['savename'];
         }
         $_POST['addTime'] = time();
         $m = M('goods');
         $res = $m->table('type')->find($_POST['typeId']);
         $_POST['path'] = $res['path'];
         if ($goodsId = $m->add($_POST)) {
-            $img = M('goods_img');
-            $data['goodsId'] = $goodsId;
-            $data['typeId'] = $_POST['typeId'];
-            if ($img->add($data)) {
-                $this->success('新增成功', 'goodsList');
+            $this->goodsList();
             } else {
-                $this->error('新增图片失败');
-            }
-        } else {
-            $this->error('新增失败');
-        }
+                $this->error('新增失败');
+         }
 
     }
 
