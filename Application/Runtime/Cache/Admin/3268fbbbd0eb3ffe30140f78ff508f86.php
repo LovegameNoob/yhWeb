@@ -144,10 +144,11 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0" id="search">
                 <tr>
                     <td width="90%" align="left" valign="middle">
-                        <form method="post" action="">
+                        <form method="post" action="/yhWeb/Admin/Goods/goodSearch">
                             <span>商品：</span>
-                            <input type="text" name="" value="" class="text-word">
-                            <input name="" type="button" value="查询" class="text-but">
+                            <input type="text" name="keywords" class="text-word" style="color: black">
+                            <input type="hidden" name="state" value="<?php echo ($_GET['state']); ?>">
+                            <input type="submit" value="查询" class="text-but">
                         </form>
                     </td>
                     <td width="10%" align="center" valign="middle" style="text-align:right; width:150px;"><a href="/yhWeb/Admin/Goods/addGoods" target="mainFrame" onFocus="this.blur()" class="add">新增商品</a></td>
@@ -205,7 +206,7 @@
                 <span aria-hidden="true">&laquo;</span>
             </a>
         </li>
-        <?php $__FOR_START_16853__=1;$__FOR_END_16853__=$pagenum+1;for($i=$__FOR_START_16853__;$i < $__FOR_END_16853__;$i+=1){ ?><li class="page"><a href="#"><?php echo ($i); ?></a></li><?php } ?>
+        <?php $__FOR_START_31556__=1;$__FOR_END_31556__=$pagenum+1;for($i=$__FOR_START_31556__;$i < $__FOR_END_31556__;$i+=1){ ?><li class="page"><a href="#"><?php echo ($i); ?></a></li><?php } ?>
         </volist>
         <li>
             <a href="#" aria-label="Next" id="Next">

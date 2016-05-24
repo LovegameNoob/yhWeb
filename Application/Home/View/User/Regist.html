@@ -109,7 +109,7 @@
                     <td>&nbsp;</td>
                     <td style="font-size:12px; padding-top:20px;">
                 	<span style="font-family:'宋体';" class="fl">
-                    <label class="r_rad"><input type="checkbox"/></label>
+                    <label class="r_rad"><input type="checkbox" checked/></label>
                     <label class="r_txt">我已阅读并接受《用户协议》</label>
                     </span>
                     </td>
@@ -310,11 +310,13 @@
 
         });
         /*验证码判断*/
+        var state=1;
         $('#code').blur(function () {
             var inputCode = $('#code').val();
             if (inputCode <= 0) {
                 $('.code').html('*验证码不能为空');
                 $('.code').css({'color': 'red', 'fontSize': '14px'});
+                state=0;
                 return false;
             }
 
@@ -322,15 +324,16 @@
                 if ($data == 1) {
                     $('.code').html('*验证码正确');
                     $('.code').css({'color': 'green', 'fontSize': '14px'});
+                    state=1;
                 } else {
                     $('.code').html('*验证码输入错误，请重输');
+                    state=0;
                 }
             })
 
         });
         /*ajax提交*/
         $('.reg_btn').click(function () {
-
             var userName = $('#uName').val();
 
             var uPwd = $('#uPwd').val();
@@ -368,18 +371,18 @@
                 return false;
             }
 
-            if (inputCode == '') {
-                $('.code').html('*请输入验证码');
-                return false;
+            if(state==1)
+            {
+                $.post('__URL__/register_action', {userName: userName, passWord: uPwd, email: email, phone: phone}, function (data) {
+                    if (data.status == 1) {
+                        window.location.href = '../Index/Index';
+                    } else if (data.status == 2) {
+                        alert('注册失败');
+                    }
+                }, 'json')
+
             }
 
-            $.post('__URL__/register_action', {userName: userName, passWord: uPwd, email: email, phone: phone, code: inputCode}, function (data) {
-                if (data.status == 1) {
-                    window.location.href = '../Index/Index';
-                } else if (data.status == 2) {
-                    alert('注册失败');
-                }
-            }, 'json')
         })
     });
 </script>

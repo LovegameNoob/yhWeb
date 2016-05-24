@@ -64,6 +64,7 @@
             </div>
             <ul>
                 <volist name="scanHistory" id="sh">
+                    <notempty name="sh">
                 <li>
                     <div class="img"><a href="__MOUDLE__/Product/id/{$sh.id}"><img src="__PUBLIC__/Uploads/{$sh.picName}" width="185" height="162"/></a></div>
                     <div class="name"><a href="__MOUDLE__/Product/id/{$sh.id}">{$sh.goodsName}</a></div>
@@ -71,6 +72,7 @@
                         <font>￥<span>{$sh.price}</span></font> &nbsp;
                     </div>
                 </li>
+                    </notempty>
                 </volist>
             </ul>
         </div>

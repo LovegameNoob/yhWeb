@@ -267,6 +267,16 @@ class GoodsController extends Controller
         }
 
     }
+    public function goodSearch()
+    {
+        $d = D('Goods');
+        $goods = $d->where("goodsName LIKE '%{$_POST['keywords']}%' AND state={$_POST['state']}")->select();
+        $pagenum=count($goods);
+        $pagenum = ceil($pagenum / 5);
+        $this->assign('goods', $goods);
+        $this->assign('pagenum', $pagenum);
+        $this->display('goodsList');
+    }
 
 
 }

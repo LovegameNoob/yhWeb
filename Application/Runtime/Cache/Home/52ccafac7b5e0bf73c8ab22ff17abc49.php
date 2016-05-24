@@ -230,19 +230,20 @@
     }
     $(function () {
         $('.cartdel').click(function () {
+            $(this).parent().remove()
             $.post('/yhWeb/Home/BuyCar/cartDel', {id: $(this).attr('cartid')}, function (data) {
                 $('#typenum').text(data.typenum)
                 if ($('.cars li').length <= 0) {
                     $('.car_bg').html('<div class="un_login">购物车里空空如也~</div>');
                 }
                 else {
-                    $('#total').text(data.total)
+                    $('#total').html(data.total)
                 }
             }, 'json')
+            //window.location.reload()
         })
 
     })
-
 </script>
 <!--End Header End-->
 <!--Begin Menu Begin-->
@@ -630,7 +631,7 @@
     </div>
     <div class="btmbg">
         <div class="btm">
-            备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br/>
+            备案/许可证编号：豫ICP备12009302号-1-www.dingguagua.com Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br/>
             <img src="/yhWeb/Public/Home/Images/b_1.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_2.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_3.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_4.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_5.gif" width="98" height="33"/><img src="/yhWeb/Public/Home/Images/b_6.gif" width="98" height="33"/>
         </div>
     </div>

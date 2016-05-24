@@ -223,19 +223,20 @@
     }
     $(function () {
         $('.cartdel').click(function () {
+            $(this).parent().remove()
             $.post('/yhWeb/Home/BuyCar/cartDel', {id: $(this).attr('cartid')}, function (data) {
                 $('#typenum').text(data.typenum)
                 if ($('.cars li').length <= 0) {
                     $('.car_bg').html('<div class="un_login">购物车里空空如也~</div>');
                 }
                 else {
-                    $('#total').text(data.total)
+                    $('#total').html(data.total)
                 }
             }, 'json')
+            //window.location.reload()
         })
 
     })
-
 </script>
 <!--End Header End-->
 <!--Begin Menu Begin-->

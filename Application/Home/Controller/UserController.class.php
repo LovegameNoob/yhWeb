@@ -29,6 +29,7 @@ class UserController extends Controller
         $res = $user->add($data);
         if ($res) {
             session('userName', $_POST['userName']);
+            session('userId', $res);
             $result['status'] = 1;
         } else {
             $result['status'] = 2;
@@ -109,7 +110,15 @@ class UserController extends Controller
             session('userId', $r['id']);
             $result['status'] = 1;
         } else {
-            $result['status'] = 2;
+            $r = $u->where("userName={$data['userName']}")->find();
+            if($r['activeFlag']==0)
+            {
+                $result['status'] = 3;
+            }
+            else
+            {
+                $result['status'] = 2;
+            }
         }
         $this->ajaxReturn($result);
     }

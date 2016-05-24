@@ -20,7 +20,7 @@
                     <td align="right" valign="top" id="header-right">
                         <a href="" target="topFrame" onFocus="this.blur()" class="admin-out">注销</a>
                         <a href="Index" target="top" onFocus="this.blur()" class="admin-home">管理首页</a>
-                        <a href="/yhWeb/Home/Index" target="_blank" onFocus="this.blur()" class="admin-index">网站首页</a>
+                        <a href="<?php echo U('Home/Index/index');?>" target="_blank" onFocus="this.blur()" class="admin-index">网站首页</a>
             <span>
 <!-- 日历 -->
 <SCRIPT type=text/javascript src="/yhWeb/Public/Admin/Js/clock.js"></SCRIPT>

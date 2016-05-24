@@ -221,19 +221,20 @@
     }
     $(function () {
         $('.cartdel').click(function () {
+            $(this).parent().remove()
             $.post('/yhWeb/Home/BuyCar/cartDel', {id: $(this).attr('cartid')}, function (data) {
                 $('#typenum').text(data.typenum)
                 if ($('.cars li').length <= 0) {
                     $('.car_bg').html('<div class="un_login">购物车里空空如也~</div>');
                 }
                 else {
-                    $('#total').text(data.total)
+                    $('#total').html(data.total)
                 }
             }, 'json')
+            //window.location.reload()
         })
 
     })
-
 </script>
 <!--End Header End-->
 <!--Begin Menu Begin-->
@@ -310,13 +311,13 @@
                 <span class="fr"><a href="javascript:empty();">清空</a></span>
             </div>
             <ul>
-                <?php if(is_array($scanHistory)): $i = 0; $__LIST__ = $scanHistory;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$sh): $mod = ($i % 2 );++$i;?><li>
+                <?php if(is_array($scanHistory)): $i = 0; $__LIST__ = $scanHistory;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$sh): $mod = ($i % 2 );++$i; if(!empty($sh)): ?><li>
                     <div class="img"><a href="__MOUDLE__/Product/id/<?php echo ($sh["id"]); ?>"><img src="/yhWeb/Public/Uploads/<?php echo ($sh["picName"]); ?>" width="185" height="162"/></a></div>
                     <div class="name"><a href="__MOUDLE__/Product/id/<?php echo ($sh["id"]); ?>"><?php echo ($sh["goodsName"]); ?></a></div>
                     <div class="price">
                         <font>￥<span><?php echo ($sh["price"]); ?></span></font> &nbsp;
                     </div>
-                </li><?php endforeach; endif; else: echo "" ;endif; ?>
+                </li><?php endif; endforeach; endif; else: echo "" ;endif; ?>
             </ul>
         </div>
         <div class="l_list categorylist">

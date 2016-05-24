@@ -118,9 +118,19 @@
                     } else if (data.status == 2) {
                         alert('用户名或密码错误');
                     }
+                    else if(data.status == 3)
+                    {
+                        alert('该用户可能已被禁用，请联系客服人员');
+                    }
                 }, 'json')
             }
 
+        })
+        $(window).keydown(function(){
+            if (event.keyCode==13)
+            {
+                $('.log_btn').click()
+            }
         })
         $('#form1').validate({
             rules: {

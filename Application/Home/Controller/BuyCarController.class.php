@@ -102,7 +102,6 @@ class BuyCarController extends PublicController
 
     public function BuyCar_Three()
     {
-
         foreach ($_SESSION['cart']['goods'] as $key => $val) {
             $m = M('user');
             $user = $m->find($val['userId']);
@@ -118,11 +117,10 @@ class BuyCarController extends PublicController
             $order = M('orders');
             $order->add($data);
             $orderCode = date("Ymd", $data['addTime']) . $data['userId'];
-
         }
         $this->assign('orderCode', $orderCode);
         $this->assign('total', $_SESSION['cart']['total']);
-        $order->delete($data['userId']);
+        session('cart',null);
         $this->display();
     }
 

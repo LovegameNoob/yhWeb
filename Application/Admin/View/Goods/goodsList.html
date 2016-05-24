@@ -19,10 +19,11 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0" id="search">
                 <tr>
                     <td width="90%" align="left" valign="middle">
-                        <form method="post" action="">
+                        <form method="post" action="__URL__/goodSearch">
                             <span>商品：</span>
-                            <input type="text" name="" value="" class="text-word">
-                            <input name="" type="button" value="查询" class="text-but">
+                            <input type="text" name="keywords" class="text-word" style="color: black">
+                            <input type="hidden" name="state" value="{$Think.get.state}">
+                            <input type="submit" value="查询" class="text-but">
                         </form>
                     </td>
                     <td width="10%" align="center" valign="middle" style="text-align:right; width:150px;"><a href="__URL__/addGoods" target="mainFrame" onFocus="this.blur()" class="add">新增商品</a></td>

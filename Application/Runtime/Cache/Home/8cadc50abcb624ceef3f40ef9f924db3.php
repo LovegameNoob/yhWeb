@@ -9,6 +9,8 @@
         EvPNG.fix('div, ul, img, li, input, a');
     </script>
     <![endif]-->
+    <script src="/yhWeb/Public/jquery.js"></script>
+    <script type="text/javascript" src="jquery-1.11.1.min_044d0927.js"></script>
     <script type="text/javascript" src="/yhWeb/Public/Home/Js/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="/yhWeb/Public/Home/Js/menu.js"></script>
 
@@ -196,23 +198,7 @@
         </div>
     </div>
 </div>
-<!--End Header End-->
-<script src="/yhWeb/Public/jquery.js"></script>
 <script>
-    $(function () {
-        $('.cartdel').click(function () {
-            $(this).parent().remove()
-            $.post('/yhWeb/Home/BuyCar/cartDel', {id: $(this).attr('cartid')}, function (data) {
-                $('#typenum').text(data.typenum)
-                if ($('.cars li').length <= 0) {
-                    $('.car_bg').html("<div class='un_login'>购物车里空空如也~</div>");
-                }
-                else {
-                    $('#total').text(data.total)
-                }
-            })
-        })
-    })
     function ShowDiv_1(show_div, bg_div, id) {
         var num = $('.n_ipt').val();
         $.post('/yhWeb/Home/BuyCar/addBuyCar', {id: id, num: num}, function (data) {
@@ -228,8 +214,8 @@
             else {
                 $('#cartmsg').html(data.msg)
                 $('#typenum').text(data.typenum)
-                $('.car_bg').html(data.content)
-
+                $('.cars').html(data.content)
+                $('#total').text(data.total)
                 document.getElementById(show_div).style.display = 'block';
                 document.getElementById(bg_div).style.display = 'block';
                 var bgdiv = document.getElementById(bg_div);
@@ -238,7 +224,7 @@
                 $("#" + bg_div).height($(document).height());
             }
 
-        })
+        }, 'json')
     }
     function ShowDiv(show_div, bg_div, id) {
         $('.b_sure').attr("href", "/yhWeb/Home/BuyCar/cartDelete/id/"
@@ -250,8 +236,24 @@
         // bgdiv.style.height = $(document).height();
         $("#" + bg_div).height($(document).height());
     }
+    $(function () {
+        $('.cartdel').click(function () {
+            $(this).parent().remove()
+            $.post('/yhWeb/Home/BuyCar/cartDel', {id: $(this).attr('cartid')}, function (data) {
+                $('#typenum').text(data.typenum)
+                if ($('.cars li').length <= 0) {
+                    $('.car_bg').html('<div class="un_login">购物车里空空如也~</div>');
+                }
+                else {
+                    $('#total').html(data.total)
+                }
+            }, 'json')
+            //window.location.reload()
+        })
 
+    })
 </script>
+<!--End Header End-->
 <!--Begin Menu Begin-->
 <div class="menu_bg">
     <div class="menu">
@@ -290,6 +292,7 @@
         <div class="m_ad">中秋送好礼！</div>
     </div>
 </div>
+<!--Begin Menu Begin-->
 <!--End Menu End-->
 <div class="i_bg">
     <div class="postion">
@@ -320,14 +323,18 @@
                 本店价格：<b>￥<?php echo ($goodsdetail["goods"]["price"]); ?></b><br/>
                 消费积分：<span>28R</span>
             </div>
-            <?php if(is_array($goodsdetail["version"])): $i = 0; $__LIST__ = $goodsdetail["version"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$version): $mod = ($i % 2 );++$i;?><div class="des_choice">
-                    <span class="fl"><?php echo ($version["propertyName"]); ?>：</span>
-                    <ul>
-                        <?php if(is_array($version["propertyValue"])): $i = 0; $__LIST__ = $version["propertyValue"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$value): $mod = ($i % 2 );++$i;?><li><?php echo ($value); ?>
-                                <div class="ch_img"></div>
-                            </li><?php endforeach; endif; else: echo "" ;endif; ?>
-                    </ul>
-                </div><?php endforeach; endif; else: echo "" ;endif; ?>
+            <!--<?php if(is_array($goodsdetail["version"])): $i = 0; $__LIST__ = $goodsdetail["version"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$version): $mod = ($i % 2 );++$i;?>-->
+                <!--<div class="des_choice">-->
+                    <!--<span class="fl"><?php echo ($version["propertyName"]); ?>：</span>-->
+                    <!--<ul>-->
+                        <!--<?php if(is_array($version["propertyValue"])): $i = 0; $__LIST__ = $version["propertyValue"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$value): $mod = ($i % 2 );++$i;?>-->
+                            <!--<li><?php echo ($value); ?>-->
+                                <!--<div class="ch_img"></div>-->
+                            <!--</li>-->
+                        <!--<?php endforeach; endif; else: echo "" ;endif; ?>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--<?php endforeach; endif; else: echo "" ;endif; ?>-->
             <!--<li class="checked"><?php echo ($value); ?><div class="ch_img"></div></li>-->
             <div class="des_share">
                 <div class="d_sh">

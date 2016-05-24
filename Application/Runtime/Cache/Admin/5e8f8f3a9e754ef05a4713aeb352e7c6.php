@@ -1,5 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); ?>
-<html>
+<?php if (!defined('THINK_PATH')) exit();?><html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>主要内容区main</title>
@@ -205,46 +204,46 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">用户名：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="userName" value="<?php echo($result["userName"]); ?>" class="text-word">
-                            <input type="hidden" name="id" value="<?php echo($result["id"]); ?>">
+                            <input type="text" name="userName" value="<?php echo ($result["userName"]); ?>" class="text-word">
+                            <input type="hidden" name="id" value="<?php echo ($result["id"]); ?>">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">用户密码：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="password" name="passWord" value="<?php echo($result["passWord"]); ?>" class="text-word">
+                            <input type="password" name="passWord" value="<?php echo ($result["passWord"]); ?>" class="text-word">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">真实姓名：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="trueName" value="<?php echo($result["trueName"]); ?>" class="text-word">
+                            <input type="text" name="trueName" value="<?php echo ($result["trueName"]); ?>" class="text-word">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">性别：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="radio" name='sex' value='1' <?php echo ($result['sex'] == '1') ? "checked" : ""; ?> />男
-                            <input type="radio" name='sex' value='2' <?php echo ($result['sex'] == '2') ? "checked" : ""; ?>/>女
-                            <input type="radio" name='sex' value='0' <?php echo ($result['sex'] == '0') ? "checked" : ""; ?>/>保密
+                            <input type="radio" name='sex' value='1' <?php echo ($result['sex']=='1')?"checked":""; ?> />男
+                            <input type="radio" name='sex' value='2' <?php echo ($result['sex']=='2')?"checked":""; ?>/>女
+                            <input type="radio" name='sex' value='0' <?php echo ($result['sex']=='0')?"checked":""; ?>/>保密
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">email：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="email" value="<?php echo($result["email"]); ?>" class="text-word">
+                            <input type="text" name="email" value="<?php echo ($result["email"]); ?>" class="text-word">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">手机号：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="phone" value="<?php echo($result["phone"]); ?>" class="text-word">
+                            <input type="text" name="phone" value="<?php echo ($result["phone"]); ?>" class="text-word">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">头像：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="file" name="face" value='<img src="/yhWeb/Public/Uploads/<?php echo($result["face"]); ?>" alt="" width="50" height="50">' class="text-word">
+                            <input type="file" name="face" value='<img src="/yhWeb/Public/Uploads/<?php echo ($result["face"]); ?>" alt="" width="50" height="50">' class="text-word">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">

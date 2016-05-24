@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2016-05-20 16:02:27
+-- Generation Time: 2016-05-21 13:58:18
 -- 服务器版本： 5.6.27
 -- PHP Version: 5.5.30
 
@@ -85,6 +85,13 @@ CREATE TABLE `cart` (
   `number` int(10) UNSIGNED NOT NULL COMMENT '数量'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='购物车表';
 
+--
+-- 转存表中的数据 `cart`
+--
+
+INSERT INTO `cart` (`id`, `goodsId`, `userId`, `property`, `picName`, `goodsName`, `price`, `number`) VALUES
+(77, 6, 56, NULL, '573d8bd49d7d4.jpg', '奥利奥威化饼干巧克棒', 16.00, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -164,12 +171,12 @@ CREATE TABLE `goods` (
 --
 
 INSERT INTO `goods` (`id`, `typeId`, `path`, `goodsName`, `brands`, `brandsImg`, `descr`, `property`, `price`, `priceLower`, `picName`, `state`, `stock`, `sales`, `click`, `addTime`, `isLimitime`, `isDiscount`, `isHot`, `isImport`, `recommend`) VALUES
-(1, 38, '25,33', '苹果iPhone 6S ', 'iPhone(苹果)', 'applelogo.png', '苹果(IOS)6s iPhone 6S 4.7英寸三网通4G 玫瑰金色16GB官方标配', '1:0,2:1,3:2,4:1', 4888.00, NULL, '217_G_1454013403103.jpg', 2, 0, 0, 23, 1461761609, 0, 0, 1, 0, 0),
-(2, 8, '1,2', '达利园瑞士卷蛋卷包装', '达利园', 'daliyuan.png', '达利园瑞士卷香蕉味3斤提手装', '', 10.00, NULL, '254_P_1454022571771.png', 2, 998, 300, 27, 1461808987, 1, 0, 0, 0, 0),
+(1, 38, '25,33', '苹果iPhone 6S ', 'iPhone(苹果)', 'applelogo.png', '苹果(IOS)6s iPhone 6S 4.7英寸三网通4G 玫瑰金色16GB官方标配', '1:0,2:1,3:2,4:1', 4888.00, NULL, '217_G_1454013403103.jpg', 2, 0, 0, 31, 1461761609, 0, 0, 1, 0, 0),
+(2, 8, '1,2', '达利园瑞士卷蛋卷包装', '达利园', 'daliyuan.png', '达利园瑞士卷香蕉味3斤提手装', '', 10.00, NULL, '254_P_1454022571771.png', 2, 998, 300, 32, 1461808987, 1, 0, 0, 0, 0),
 (3, 43, '1,42', '德亚全脂纯牛奶', '德亚', '', '德亚全脂纯牛奶200ml*48盒', '', 189.00, 0.00, '5721de81c9763.jpg', 3, 322, 200, 0, 1461837441, 0, 1, 1, 0, 0),
-(4, 48, '1,21', 'Lay''s乐事薯片', '乐事', 'leshilogo.jpg', 'Lay''s乐事 孜然爆羊排味 40g', '', 3.00, 0.00, '5721f8f1c517e.jpg', 2, 323, 100, 3, 1461844209, 0, 1, 0, 0, 0),
-(5, 51, '26,49', '完达山金装育儿健奶粉', '完达山', '', '完达山 金装育儿健奶粉 2段婴幼儿配方奶粉 400G', '', 25.00, 0.00, '5721fb61c92b1.jpg', 2, 36, 0, 3, 1461844833, 0, 1, 1, 0, 0),
-(6, 5, '1,2', '奥利奥威化饼干巧克棒', '奥利奥', 'oreologo.png', '奥利奥威化饼干巧克棒原味巧克力味64g', '5:3,6:0', 16.00, 0.00, '573d8bd49d7d4.jpg', 2, 6666, 232, 19, 1461845580, 1, 0, 0, 0, 0),
+(4, 48, '1,21', 'Lay''s乐事薯片', '乐事', 'leshilogo.jpg', 'Lay''s乐事 孜然爆羊排味 40g', '', 3.00, 0.00, '5721f8f1c517e.jpg', 2, 323, 100, 11, 1461844209, 0, 1, 0, 0, 0),
+(5, 51, '26,49', '完达山金装育儿健奶粉', '完达山', '', '完达山 金装育儿健奶粉 2段婴幼儿配方奶粉 400G', '', 25.00, 0.00, '5721fb61c92b1.jpg', 2, 36, 0, 6, 1461844833, 0, 1, 1, 0, 0),
+(6, 5, '1,2', '奥利奥威化饼干巧克棒', '奥利奥', 'oreologo.png', '奥利奥威化饼干巧克棒原味巧克力味64g', '5:3,6:0', 16.00, 0.00, '573d8bd49d7d4.jpg', 2, 6666, 232, 39, 1461845580, 1, 0, 0, 0, 0),
 (7, 78, '28,77', '维达3层抽取式纸面巾', '维达', '', '维达倍韧系列3层抽取式纸面巾', '', 5.80, 0.00, '57285a5c1e7bb.jpg', 2, 2323, 0, 1, 1462262364, 0, 0, 0, 0, 0),
 (8, 79, '28,74', '立白超洁清新无磷洗衣粉', '立白', '', '立白 超洁清新无磷洗衣粉', '', 9.80, 0.00, '57285b7baf1fc.jpg', 2, 6060, 0, 0, 1462262651, 0, 0, 0, 0, 0),
 (9, 80, '25,35', '华硕 E202笔记本', '华硕(ASUS)', '', '华硕 E202 11.6英寸(赛扬N3050双核/4G/500G/集显)X205TA3735白色官方标配', '', 2380.00, 0.00, '57285cb709d97.jpg', 2, 250, 0, 0, 1462262967, 0, 0, 0, 0, 0),
@@ -177,7 +184,8 @@ INSERT INTO `goods` (`id`, `typeId`, `path`, `goodsName`, `brands`, `brandsImg`,
 (11, 84, '23,83', '海南香蕉500g', '', '', '新鲜水果 香蕉 海南香蕉 500g', '', 4.50, 3.80, '57285e10c1637.jpg', 1, 600, 0, 0, 1462263312, 0, 0, 0, 0, 0),
 (12, 70, '24,65', '欧莱雅致透净颜洁面乳', '欧莱雅(OREAL)', '', 'L’OREAL 欧莱雅 致透净颜洁面乳 125mL', '', 110.00, 95.00, '57285ef05cfec.jpg', 1, 605, 0, 0, 1462263536, 0, 0, 0, 0, 0),
 (13, 86, '24,85', '海飞丝去屑洗发露', '海飞丝', '', '海飞丝 去屑洗发露 清爽去油型 200ml', '', 26.00, 23.80, '5728601014d74.jpg', 2, 1230, 0, 0, 1462263824, 0, 0, 0, 0, 0),
-(21, 89, '1,88', '福临门 苏北米 清香米 中粮出品 大米 5kg', '福临门', '', '福临门 苏北米 清香米 中粮出品 大米 5kg', NULL, 29.90, 0.00, '57359738d729a.jpg', 3, 123, 0, 0, 1463129913, 1, 0, 0, 0, 0);
+(21, 89, '1,88', '福临门 苏北米 清香米 中粮出品 大米 5kg', '福临门', '', '福临门 苏北米 清香米 中粮出品 大米 5kg', NULL, 29.90, 0.00, '57359738d729a.jpg', 3, 123, 0, 0, 1463129913, 1, 0, 0, 0, 0),
+(22, 38, '25,33', '华为 P9 全网通 3GB+32GB版 流光金 移动联通电信4G手机 双卡双待', '华为', '', '华为 P9 全网通 3GB+32GB版 流光金 移动联通电信4G手机 双卡双待', NULL, 3188.00, 0.00, '573ec8ed0d4b1.jpg', 1, 322, 0, 0, 1463732461, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -215,8 +223,8 @@ CREATE TABLE `orders` (
   `userId` int(10) UNSIGNED NOT NULL,
   `goodsName` varchar(32) DEFAULT NULL,
   `linkMan` varchar(32) NOT NULL,
-  `address` varchar(255) NOT NULL,
-  `code` char(6) NOT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `code` char(6) DEFAULT NULL,
   `phone` varchar(16) NOT NULL,
   `addTime` int(12) UNSIGNED NOT NULL,
   `number` tinyint(3) UNSIGNED NOT NULL COMMENT '数量',
@@ -239,7 +247,8 @@ INSERT INTO `orders` (`id`, `goodsId`, `userId`, `goodsName`, `linkMan`, `addres
 (20, 46, 0, '', '赵三1', '郑州市国基路102', '450000', '13245454235', 20140910, 1, 1368.00, 3),
 (22, 1, 7, '苹果iPhone 6S ', '2163880', '河南省漯河市源汇区', '462000', '15639505278', 1463043459, 1, 4888.00, 1),
 (13, 23, 7, '加大', '爱的就死机', '爱上的季节', '462000', '13569695381', 1236547800, 1, 66.00, 1),
-(25, 1, 7, '苹果iPhone 6S ', '2163880', '河南省漯河市源汇区', '462000', '15639505278', 1463706390, 0, 19552.00, 1);
+(25, 1, 7, '苹果iPhone 6S ', '2163880', '河南省漯河市源汇区', '462000', '15639505278', 1463706390, 0, 19552.00, 1),
+(26, 1, 56, '苹果iPhone 6S ', 'qwer123456', NULL, NULL, '13658954126', 1463801896, 0, 14664.00, 1);
 
 --
 -- 触发器 `orders`
@@ -444,7 +453,7 @@ INSERT INTO `user` (`id`, `userName`, `passWord`, `trueName`, `sex`, `idCard`, `
 (47, 'asdf2163880', '2163880', '王老五', '', NULL, 'asdadd21321@qq.com', '12345678901', '57329bb861391.jpg', 1462934456, 0, NULL, NULL),
 (48, '123546454@545', '2131321', '大叔', '保密', NULL, '513135131', '1231566', NULL, 20160318, 1, NULL, NULL),
 (49, 'dpy123456', '2163880', '', '保密', NULL, '23658285@qq.com', '13688888888', NULL, 1463035359, 0, NULL, NULL),
-(51, '1asd2163', 'asdfghjkl', '', '保密', NULL, '1asdasda@qq.com', '13569696969', NULL, 1463038570, 0, NULL, NULL);
+(56, 'qwer123456', '2163880', '', '保密', NULL, '13698542@qq.com', '13658954126', NULL, 1463801102, 0, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -546,7 +555,7 @@ ALTER TABLE `banner`
 -- 使用表AUTO_INCREMENT `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 --
 -- 使用表AUTO_INCREMENT `category`
 --
@@ -561,7 +570,7 @@ ALTER TABLE `collection`
 -- 使用表AUTO_INCREMENT `goods`
 --
 ALTER TABLE `goods`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- 使用表AUTO_INCREMENT `goods_img`
 --
@@ -571,7 +580,7 @@ ALTER TABLE `goods_img`
 -- 使用表AUTO_INCREMENT `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- 使用表AUTO_INCREMENT `property`
 --
@@ -591,7 +600,7 @@ ALTER TABLE `type`
 -- 使用表AUTO_INCREMENT `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
